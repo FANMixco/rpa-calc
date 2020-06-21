@@ -1,0 +1,58 @@
+<div class="container" style="padding-top: 15px;">
+    <form [formGroup]="msPowerUsersForm">
+        <h2>Per User without RPAs</h2>
+        <div class="form-group">
+            <label for="txtUserNoRPA"># of Users</label>
+            <input type="number" class="form-control" placeholder="Total" value="0" min="0" />
+        </div>
+        <div class="form-group">
+            <label for="txtTotalNoRPA">Cost in US$ per month</label>
+            <input class="form-control" placeholder="Total" value="0" readonly />
+        </div>
+
+        <h2>Per User with RPAs</h2>
+        <div class="form-group">
+            <label for="txtUserRPA"># of Users</label>
+            <input type="number" class="form-control" placeholder="Total" value="0" min="0" />
+        </div>
+        <div class="form-group">
+            <label for="txtRobot"># of Robots</label>
+            <input type="number" class="form-control" placeholder="Total" value="0" min="0" disabled />
+        </div>
+        <div class="form-group">
+            <label for="txtTotalRPA">Cost in US$ per month</label>
+            <input class="form-control" placeholder="Total" value="0" readonly />
+        </div>
+
+        <h2>Full Totals</h2>
+
+        <div class="form-group">
+            <label for="txtTotalPerMonth">Per month in US$</label>
+            <input class="form-control" placeholder="Total" value="0" readonly />
+        </div>
+
+        <div class="form-group">
+            <label for="txtTotalPerYear">Per year in US$</label>
+            <input class="form-control" placeholder="Total" value="0" readonly />
+        </div>
+
+        <h3>Notes:</h3>
+        <ul>
+            <li>
+                Every package Include unlimited Flows using Connectors provided by Microsoft.
+            </li>
+            <li>
+                RPA is the capability to integrate your Flows with other apps (internals apps, for example) not supported by Microsoft.
+                <br />
+                More info about available <a href="https://emea.flow.microsoft.com/en-us/connectors/">connectors</a>.
+            </li>
+            <li>Types:
+                <ul>
+                    <li>Attended RPAs are Flows that interact with the users.</li>
+                    <li>Unattended RPAs (bots) are Flows that work autonomously (by themselves) on the background.</li>
+                </ul>
+            </li>
+            <li>DISCLAIMER. The costs exclude Microsoft 365 prices.</li>
+        </ul>
+    </form>
+</div>
