@@ -9,14 +9,22 @@
             </div>
             <div class="col-sm">
                 <div class="form-group">
-                    <label for="txtFlowNoRPA"># of Users with Attended RPAs</label>
+                    <label for="txtFlowNoRPA"># of Users with <b>Attended RPAs</b></label>
                     <input type="number" class="form-control" placeholder="Total" formControlName="txtFlowNoRPA" min="0" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm">
+                <div class="form-group">
+                    <label for="txtFlowRPA"># of <b>Unattended RPAs (Bots)</b></label>
+                    <input type="number" class="form-control" placeholder="Total" formControlName="txtFlowRPA" min="0" />
                 </div>
             </div>
             <div class="col-sm">
                 <div class="form-group">
-                    <label for="txtFlowRPA"># of Unattended RPAs (Bots)</label>
-                    <input type="number" class="form-control" placeholder="Total" formControlName="txtFlowRPA" min="0" />
+                    <label for="txtAI"># of AI <b>Units</b></label>
+                    <input type="number" class="form-control" placeholder="Total" formControlName="txtAI" min="0" />
                 </div>
             </div>
         </div>
@@ -25,13 +33,13 @@
         <div class="row">
             <div class="col-sm">
                 <div class="form-group">
-                    <label for="txtTotalFlowMonth">Per month in US$</label>
+                    <label for="txtTotalFlowMonth">Per Month in US$</label>
                     <input class="form-control" placeholder="Total" value="500" value="{{totalPerMonth}}" readonly />
                 </div>
             </div>
             <div class="col-sm">
                 <div class="form-group">
-                    <label for="txtTotalFlowYear">Per month in US$</label>
+                    <label for="txtTotalFlowYear">Per Month in US$</label>
                     <input class="form-control" placeholder="Total" value="{{totalPerYear}}" readonly />
                 </div>
             </div>
@@ -39,6 +47,8 @@
 
         <h4>Notes:</h4>
         <ul>
+            <li>DISCLAIMER. The costs exclude Microsoft 365 prices.</li>
+            <li>Many services require a Microsoft 365 account.</li>
             <li>
                 The package includes 5 Flows for unlimited users by default.
             </li>
@@ -49,12 +59,13 @@
             </li>
             <li>Types:
                 <ul>
-                    <li>Attended RPAs are Flows that interact with the users.</li>
-                    <li>Unattended RPAs (bots) are Flows that work autonomously (by themselves) on the background.</li>
+                    <li><b>Attended RPAs</b> are Flows that interact with the users.</li>
+                    <li><b>Unattended RPAs (bots)</b> are Flows that work autonomously (by themselves) on the background.</li>
                 </ul>
             </li>
-            <li>DISCLAIMER. The costs exclude Microsoft 365 prices.</li>
-            <li>Many services require a Microsoft 365 account.</li>
+            <li><b>Units</b> represent specific actions for example, Business card reader, Form processing, Key phrase extraction, Language detection, Object detection, Prediction, Sentiment analysis, and Text recognition.
+                <br />You can get more information about them <a href="https://powerapps.microsoft.com/en-us/ai-builder-calculator/">here.</a>
+            </li>
         </ul>
     </form>
 </div>

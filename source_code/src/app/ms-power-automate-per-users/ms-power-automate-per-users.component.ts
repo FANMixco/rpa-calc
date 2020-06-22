@@ -36,7 +36,10 @@ export class MsPowerAutomatePerUsersComponent implements OnInit {
         val.txtRobot = 0;
       }
 
-      this.totalRPA = val.txtUserRPA * this.infoMSPowerAutomate.perUserPlanWithRPA + val.txtRobot * this.infoMSPowerAutomate.rpaAddOn;
+      this.totalRPA = val.txtUserRPA * this.infoMSPowerAutomate.perUserPlanWithRPA
+                      + val.txtAINoRPA * this.infoMSPowerAutomate.aiAddOn
+                      + val.txtRobot * this.infoMSPowerAutomate.rpaAddOn
+                      + val.txtAI * this.infoMSPowerAutomate.aiAddOn;
 
       this.totalPerMonth = this.totalNoRPA + this.totalRPA;
       this.totalPerYear = this.totalPerMonth * 12;
@@ -47,7 +50,9 @@ export class MsPowerAutomatePerUsersComponent implements OnInit {
     this.msPowerUsersForm = this.formBuilder.group({
       txtUserNoRPA: 0,
       txtUserRPA: 0,
-      txtRobot: 0
+      txtRobot: 0,
+      txtAI: 0,
+      txtAINoRPA: 0
     });
 
     this.onChanges();    

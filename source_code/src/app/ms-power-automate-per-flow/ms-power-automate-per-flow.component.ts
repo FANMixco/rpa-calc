@@ -28,7 +28,8 @@ export class MsPowerAutomatePerFlowComponent implements OnInit {
       this.totalPerMonth = this.infoMSPowerAutomate.perFlow 
                             + val.txtExtraFlows * this.infoMSPowerAutomate.extraFlow
                             + val.txtFlowNoRPA * this.infoMSPowerAutomate.perUserPlanWithRPA 
-                            + val.txtFlowRPA * this.infoMSPowerAutomate.rpaAddOn;
+                            + val.txtFlowRPA * this.infoMSPowerAutomate.rpaAddOn
+                            + val.txtAI * this.infoMSPowerAutomate.aiAddOn;
 
       this.totalPerYear = this.totalPerMonth * 12;
     });
@@ -38,7 +39,8 @@ export class MsPowerAutomatePerFlowComponent implements OnInit {
     this.msPowerFlowsForm = this.formBuilder.group({
       txtExtraFlows: 0,
       txtFlowNoRPA: 0,
-      txtFlowRPA: 0
+      txtFlowRPA: 0,
+      txtAI: 0
     });
 
     this.onChanges();    
