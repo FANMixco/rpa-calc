@@ -9,17 +9,38 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 export class MsPowerAutomatePerFlowComponent implements OnInit {
   
   msPowerFlowsForm: FormGroup;
+  totalPerMonth:number = 500;
+  totalPerYear:number = this.totalPerMonth * 12;
+
+  infoMSPowerAutomate = {
+    "perUserPlan": 15,
+    "perUserPlanWithRPA": 40,
+    "rpaAddOn": 150,
+    "perFlow": 500,
+    "aiAddOn": 500,
+    "extraFlow": 100
+  };
 
   constructor(private formBuilder: FormBuilder) { }
+
+  onChanges(): void {
+    this.msPowerFlowsForm.valueChanges.subscribe(val => {
+      this.totalPerMonth = this.infoMSPowerAutomate.perFlow 
+                            + val.txtExtraFlows * this.infoMSPowerAutomate.extraFlow
+                            + val.txtFlowNoRPA * this.infoMSPowerAutomate.perUserPlanWithRPA 
+                            + val.txtFlowRPA * this.infoMSPowerAutomate.rpaAddOn;
+
+      this.totalPerYear = this.totalPerMonth * 12;
+    });
+  }
 
   ngOnInit(): void {
     this.msPowerFlowsForm = this.formBuilder.group({
       txtExtraFlows: 0,
       txtFlowNoRPA: 0,
-      txtFlowRPA: 0,
-      txtTotalFlowMonth: 0,
-      txtTotalFlowYear: 0
+      txtFlowRPA: 0
     });
-  }
 
+    this.onChanges();    
+  }
 }
