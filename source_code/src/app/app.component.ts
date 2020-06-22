@@ -10,7 +10,11 @@ import { Router } from '@angular/router';
 export class AppComponent {
   title = 'rpa-calc';
   router: string;
+  navbarOpen = false;
 
+  toggleNavbar() {
+    this.navbarOpen = !this.navbarOpen;
+  }
   constructor(private _router: Router){
     this.router = _router.url;
   }
