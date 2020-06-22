@@ -1,19 +1,19 @@
 <div class="container" style="padding-top: 15px;">
     <form [formGroup]="msPowerFlowsForm">
         <div class="row">
-            <div class="col">
+            <div class="col-sm">
                 <div class="form-group">
                     <label for="txtExtraFlows"># of Extra Flows</label>
                     <input type="number" class="form-control" placeholder="Total" formControlName="txtExtraFlows" min="0" />
                 </div>
             </div>
-            <div class="col">
+            <div class="col-sm">
                 <div class="form-group">
                     <label for="txtFlowNoRPA"># of Users with Attended RPAs</label>
                     <input type="number" class="form-control" placeholder="Total" formControlName="txtFlowNoRPA" min="0" />
                 </div>
             </div>
-            <div class="col">
+            <div class="col-sm">
                 <div class="form-group">
                     <label for="txtFlowRPA"># of Unattended RPAs (Bots)</label>
                     <input type="number" class="form-control" placeholder="Total" formControlName="txtFlowRPA" min="0" />
@@ -23,13 +23,13 @@
 
         <h3>Total</h3>
         <div class="row">
-            <div class="col">
+            <div class="col-sm">
                 <div class="form-group">
                     <label for="txtTotalFlowMonth">Per month in US$</label>
                     <input class="form-control" placeholder="Total" value="500" value="{{totalPerMonth}}" readonly />
                 </div>
             </div>
-            <div class="col">
+            <div class="col-sm">
                 <div class="form-group">
                     <label for="txtTotalFlowYear">Per month in US$</label>
                     <input class="form-control" placeholder="Total" value="{{totalPerYear}}" readonly />
@@ -53,8 +53,8 @@
                     <li>Unattended RPAs (bots) are Flows that work autonomously (by themselves) on the background.</li>
                 </ul>
             </li>
-            <li>Many services require a Microsoft 365 account.</li>
             <li>DISCLAIMER. The costs exclude Microsoft 365 prices.</li>
+            <li>Many services require a Microsoft 365 account.</li>
         </ul>
     </form>
 </div>
