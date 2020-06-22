@@ -1,28 +1,43 @@
 <div class="container" style="padding-top: 15px;">
     <form [formGroup]="msPowerFlowsForm">
-        <div class="form-group">
-            <label for="txtExtraFlows"># of Extra Flows</label>
-            <input type="number" class="form-control" placeholder="Total" value="0" min="0" />
-        </div>
-        <div class="form-group">
-            <label for="txtFlowNoRPA"># of Users with Attended RPAs</label>
-            <input type="number" class="form-control" placeholder="Total" value="0" min="0" />
-        </div>
-        <div class="form-group">
-            <label for="txtFlowRPA"># of Users with Attended RPAs</label>
-            <input type="number" class="form-control" placeholder="Total" value="0" min="0" />
-        </div>
-        <h2>Full Totals</h2>
-        <div class="form-group">
-            <label for="txtTotalFlowMonth">Cost in US$ per month</label>
-            <input class="form-control" placeholder="Total" value="500" readonly />
-        </div>
-        <div class="form-group">
-            <label for="txtTotalFlowYear">Cost in US$ per month</label>
-            <input class="form-control" placeholder="Total" value="6000" readonly />
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="txtExtraFlows"># of Extra Flows</label>
+                    <input type="number" class="form-control" placeholder="Total" formControlName="txtExtraFlows" min="0" />
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label for="txtFlowNoRPA"># of Users with Attended RPAs</label>
+                    <input type="number" class="form-control" placeholder="Total" formControlName="txtFlowNoRPA" min="0" />
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label for="txtFlowRPA"># of Unattended RPAs (Bots)</label>
+                    <input type="number" class="form-control" placeholder="Total" formControlName="txtFlowRPA" min="0" />
+                </div>
+            </div>
         </div>
 
-        <h3>Notes:</h3>
+        <h2>Totals</h2>
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="txtTotalFlowMonth">Cost in US$ per month</label>
+                    <input class="form-control" placeholder="Total" value="500" value="{{totalPerMonth}}" readonly />
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label for="txtTotalFlowYear">Cost in US$ per month</label>
+                    <input class="form-control" placeholder="Total" value="{{totalPerYear}}" readonly />
+                </div>
+            </div>
+        </div>
+
+        <h4>Notes:</h4>
         <ul>
             <li>
                 The package includes 5 Flows for unlimited users by default.
@@ -30,7 +45,7 @@
             <li>
                 RPA is the capability to integrate your Flows with other apps (internals apps, for example) not supported by Microsoft.
                 <br />
-                More info about available <a href="https://emea.flow.microsoft.com/en-us/connectors/">connectors</a>.
+                More info about available <a target="_blank" href="https://emea.flow.microsoft.com/en-us/connectors/">connectors</a>.
             </li>
             <li>Types:
                 <ul>
@@ -38,6 +53,7 @@
                     <li>Unattended RPAs (bots) are Flows that work autonomously (by themselves) on the background.</li>
                 </ul>
             </li>
+            <li>Many services require a Microsoft 365 account.</li>
             <li>DISCLAIMER. The costs exclude Microsoft 365 prices.</li>
         </ul>
     </form>
