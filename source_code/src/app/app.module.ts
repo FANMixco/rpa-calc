@@ -8,13 +8,15 @@ import { MsPowerAutomateComponent } from './ms-power-automate/ms-power-automate.
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MsPowerAutomatePerUsersComponent } from './ms-power-automate-per-users/ms-power-automate-per-users.component';
 import { MsPowerAutomatePerFlowComponent } from './ms-power-automate-per-flow/ms-power-automate-per-flow.component';
+import { MsPowerAutomatePricesComponent } from './ms-power-automate-prices/ms-power-automate-prices.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MsPowerAutomateComponent,
     MsPowerAutomatePerUsersComponent,
-    MsPowerAutomatePerFlowComponent
+    MsPowerAutomatePerFlowComponent,
+    MsPowerAutomatePricesComponent
   ],
   imports: [
     BrowserModule,
