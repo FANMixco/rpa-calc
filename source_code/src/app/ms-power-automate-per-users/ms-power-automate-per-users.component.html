@@ -2,13 +2,13 @@
     <form [formGroup]="msPowerUsersForm">
         <h3>Per User without RPAs</h3>
         <div class="row">
-            <div class="col">
+            <div class="col-sm">
                 <div class="form-group">
                     <label for="txtUserNoRPA"># of Users</label>
                     <input type="number" class="form-control" placeholder="Total" formControlName="txtUserNoRPA" min="0" />
                 </div>
             </div>
-            <div class="col">
+            <div class="col-sm">
                 <div class="form-group">
                     <label for="txtTotalNoRPA">Cost in US$ per month</label>
                     <input class="form-control" placeholder="Total" value="{{totalNoRPA}}" readonly />
@@ -18,19 +18,19 @@
 
         <h3>Per User with RPAs</h3>
         <div class="row">
-            <div class="col">
+            <div class="col-sm">
                 <div class="form-group">
                     <label for="txtUserRPA"># of Users</label>
                     <input type="number" class="form-control" placeholder="Total" formControlName="txtUserRPA" min="0" />
                 </div>
             </div>
-            <div class="col">
+            <div class="col-sm">
                 <div class="form-group">
                     <label for="txtRobot"># of Robots</label>
                     <input type="number" class="form-control" placeholder="Total" formControlName="txtRobot" min="0" [readonly]="enableRobots" />
                 </div>
             </div>
-            <div class="col">
+            <div class="col-sm">
                <div class="form-group">
                     <label for="txtTotalRPA">Cost in US$ per month</label>
                     <input class="form-control" placeholder="Total" value="{{totalRPA}}" readonly />
@@ -40,13 +40,13 @@
 
         <h3>Total</h3>
         <div class="row">
-            <div class="col">
+            <div class="col-sm">
                 <div class="form-group">
                     <label for="txtTotalPerMonth">Per month in US$</label>
                     <input class="form-control" placeholder="Total" value="{{totalPerMonth}}" readonly />
                 </div>
             </div>
-            <div class="col">
+            <div class="col-sm">
                 <div class="form-group">
                     <label for="txtTotalPerYear">Per year in US$</label>
                     <input class="form-control" placeholder="Total" value="{{totalPerYear}}" readonly />
@@ -70,8 +70,8 @@
                     <li>Unattended RPAs (bots) are Flows that work autonomously (by themselves) on the background.</li>
                 </ul>
             </li>
-            <li>Many services require a Microsoft 365 account.</li>
             <li>DISCLAIMER. The costs exclude Microsoft 365 prices.</li>
+            <li>Many services require a Microsoft 365 account.</li>
         </ul>
     </form>
 </div>
