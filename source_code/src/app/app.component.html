@@ -1,15 +1,15 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="/ms-power-automate">RPA Calculator</a>
+    <a class="navbar-brand" [routerLink]="['/ms-power-automate']">RPA Calculator</a>
     <button class="navbar-toggler" type="button" (click)="toggleNavbar()">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" [ngClass]="{ 'show': navbarOpen }">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" href="/ms-power-automate">Microsoft Power Automate</a>
+            <a class="nav-link" [routerLink]="['/ms-power-automate']">Microsoft Power Automate</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/uipath">UiPath</a>
+            <a class="nav-link" [routerLink]="['/uipath']">UiPath</a>
           </li>
         </ul>
     </div>
