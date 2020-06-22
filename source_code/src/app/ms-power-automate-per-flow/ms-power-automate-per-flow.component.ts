@@ -43,6 +43,6 @@ export class MsPowerAutomatePerFlowComponent implements OnInit {
       txtAI: 0
     });
 
-    this.onChanges();    
+    this.onChanges();
   }
 }
