@@ -392,7 +392,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       selectors: [["app-ms-power-automate-per-flow"]],
       decls: 54,
       vars: 3,
-      consts: [[1, "container", 2, "padding-top", "15px"], [3, "formGroup"], [1, "row"], [1, "col"], [1, "form-group"], ["for", "txtExtraFlows"], ["type", "number", "placeholder", "Total", "formControlName", "txtExtraFlows", "min", "0", 1, "form-control"], ["for", "txtFlowNoRPA"], ["type", "number", "placeholder", "Total", "formControlName", "txtFlowNoRPA", "min", "0", 1, "form-control"], ["for", "txtFlowRPA"], ["type", "number", "placeholder", "Total", "formControlName", "txtFlowRPA", "min", "0", 1, "form-control"], ["for", "txtTotalFlowMonth"], ["placeholder", "Total", "value", "500", "readonly", "", 1, "form-control", 3, "value"], ["for", "txtTotalFlowYear"], ["placeholder", "Total", "readonly", "", 1, "form-control", 3, "value"], ["target", "_blank", "href", "https://emea.flow.microsoft.com/en-us/connectors/"]],
+      consts: [[1, "container", 2, "padding-top", "15px"], [3, "formGroup"], [1, "row"], [1, "col-sm"], [1, "form-group"], ["for", "txtExtraFlows"], ["type", "number", "placeholder", "Total", "formControlName", "txtExtraFlows", "min", "0", 1, "form-control"], ["for", "txtFlowNoRPA"], ["type", "number", "placeholder", "Total", "formControlName", "txtFlowNoRPA", "min", "0", 1, "form-control"], ["for", "txtFlowRPA"], ["type", "number", "placeholder", "Total", "formControlName", "txtFlowRPA", "min", "0", 1, "form-control"], ["for", "txtTotalFlowMonth"], ["placeholder", "Total", "value", "500", "readonly", "", 1, "form-control", 3, "value"], ["for", "txtTotalFlowYear"], ["placeholder", "Total", "readonly", "", 1, "form-control", 3, "value"], ["target", "_blank", "href", "https://emea.flow.microsoft.com/en-us/connectors/"]],
       template: function MsPowerAutomatePerFlowComponent_Template(rf, ctx) {
         if (rf & 1) {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
@@ -549,13 +549,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](50, "li");
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](51, "Many services require a Microsoft 365 account.");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](51, "DISCLAIMER. The costs exclude Microsoft 365 prices.");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](52, "li");
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](53, "DISCLAIMER. The costs exclude Microsoft 365 prices.");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](53, "Many services require a Microsoft 365 account.");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
@@ -699,7 +699,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       selectors: [["app-ms-power-automate-per-users"]],
       decls: 69,
       vars: 6,
-      consts: [[1, "container", 2, "padding-top", "15px"], [3, "formGroup"], [1, "row"], [1, "col"], [1, "form-group"], ["for", "txtUserNoRPA"], ["type", "number", "placeholder", "Total", "formControlName", "txtUserNoRPA", "min", "0", 1, "form-control"], ["for", "txtTotalNoRPA"], ["placeholder", "Total", "readonly", "", 1, "form-control", 3, "value"], ["for", "txtUserRPA"], ["type", "number", "placeholder", "Total", "formControlName", "txtUserRPA", "min", "0", 1, "form-control"], ["for", "txtRobot"], ["type", "number", "placeholder", "Total", "formControlName", "txtRobot", "min", "0", 1, "form-control", 3, "readonly"], ["for", "txtTotalRPA"], ["for", "txtTotalPerMonth"], ["for", "txtTotalPerYear"], ["target", "_blank", "href", "https://emea.flow.microsoft.com/en-us/connectors/"]],
+      consts: [[1, "container", 2, "padding-top", "15px"], [3, "formGroup"], [1, "row"], [1, "col-sm"], [1, "form-group"], ["for", "txtUserNoRPA"], ["type", "number", "placeholder", "Total", "formControlName", "txtUserNoRPA", "min", "0", 1, "form-control"], ["for", "txtTotalNoRPA"], ["placeholder", "Total", "readonly", "", 1, "form-control", 3, "value"], ["for", "txtUserRPA"], ["type", "number", "placeholder", "Total", "formControlName", "txtUserRPA", "min", "0", 1, "form-control"], ["for", "txtRobot"], ["type", "number", "placeholder", "Total", "formControlName", "txtRobot", "min", "0", 1, "form-control", 3, "readonly"], ["for", "txtTotalRPA"], ["for", "txtTotalPerMonth"], ["for", "txtTotalPerYear"], ["target", "_blank", "href", "https://emea.flow.microsoft.com/en-us/connectors/"]],
       template: function MsPowerAutomatePerUsersComponent_Template(rf, ctx) {
         if (rf & 1) {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
@@ -904,13 +904,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](65, "li");
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](66, "Many services require a Microsoft 365 account.");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](66, "DISCLAIMER. The costs exclude Microsoft 365 prices.");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](67, "li");
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](68, "DISCLAIMER. The costs exclude Microsoft 365 prices.");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](68, "Many services require a Microsoft 365 account.");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
