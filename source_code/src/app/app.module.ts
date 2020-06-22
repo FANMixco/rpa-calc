@@ -9,6 +9,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MsPowerAutomatePerUsersComponent } from './ms-power-automate-per-users/ms-power-automate-per-users.component';
 import { MsPowerAutomatePerFlowComponent } from './ms-power-automate-per-flow/ms-power-automate-per-flow.component';
 import { MsPowerAutomatePricesComponent } from './ms-power-automate-prices/ms-power-automate-prices.component';
+import { UipathComponent } from './uipath/uipath.component';
+import { UipathPricingComponent } from './uipath-pricing/uipath-pricing.component';
+import { UipathPaymentComponent } from './uipath-payment/uipath-payment.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +19,10 @@ import { MsPowerAutomatePricesComponent } from './ms-power-automate-prices/ms-po
     MsPowerAutomateComponent,
     MsPowerAutomatePerUsersComponent,
     MsPowerAutomatePerFlowComponent,
-    MsPowerAutomatePricesComponent
+    MsPowerAutomatePricesComponent,
+    UipathComponent,
+    UipathPricingComponent,
+    UipathPaymentComponent
   ],
   imports: [
     BrowserModule,

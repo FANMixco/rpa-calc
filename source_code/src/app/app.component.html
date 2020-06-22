@@ -1,5 +1,19 @@
-<h1 style="padding-top: 15px;">RPA Calculator</h1>
-<app-ms-power-automate></app-ms-power-automate>
-<div class="footer-copyright text-center py-3">© 2020 Copyright:
-    <a href="https://federiconavarrete.com"> Federico Navarrete</a>
-</div>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/ms-power-automate">RPA Calculator</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/ms-power-automate">Microsoft Power Automate</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/uipath">UiPath</a>
+          </li>
+        </ul>
+    </div>
+</nav>
+<app-ms-power-automate *ngIf="router == '/ms-power-automate'"></app-ms-power-automate>
+<app-uipath *ngIf="router == '/uipath'"></app-uipath>
+<router-outlet></router-outlet>

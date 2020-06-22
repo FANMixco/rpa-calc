@@ -1,0 +1,64 @@
+<div class="container" style="padding-top: 15px;">
+    <form [formGroup]="uiPathForm">
+        <div class="row">
+            <div class="col-sm">
+                <div class="form-group">
+                    <label for="cmbUnits" translate>Location</label>
+                    <select class="form-control" formControlName="uiLocation" disabled>
+                        <option *ngFor="let option of uiLocation" [value]="option.value">{{option.name}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm">
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" formControlName="withStudio" />
+                    <label class="form-check-label" for="withStudio">With UiPath Studio</label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm">
+                <div class="form-group">
+                    <label for="noAttended"># of Attended Bots</label>
+                    <input type="number" class="form-control" placeholder="Total" formControlName="noAttended" min="0" />
+                </div>
+            </div>
+            <div class="col-sm">
+                <div class="form-group">
+                    <label for="noUnattended"># of Unattended Bots</label>
+                    <input type="number" class="form-control" placeholder="Total" formControlName="noUnattended" min="0" />
+                </div>
+            </div>
+        </div>
+        <h3>Total</h3>
+        <div class="row">
+            <div class="col-sm">
+                <div class="form-group">
+                    <label for="txtTotalPerMonth">Per Month in US$</label>
+                    <input class="form-control" placeholder="Total" value="{{totalPerMonth}}" readonly />
+                </div>
+            </div>
+            <div class="col-sm">
+                <div class="form-group">
+                    <label for="txtTotalPerYear">Per Year in US$</label>
+                    <input class="form-control" placeholder="Total" value="{{totalPerYear}}" readonly />
+                </div>
+            </div>
+        </div>
+
+        <h4>Notes:</h4>
+        <ul>
+            <li>Disclaimer. The prices are averages based on <i>UiVision</i> information.</li>
+            <li>Types:
+                <ul>
+                    <li><b>Attended Robot</b> interacts with the users.</li>
+                    <li><b>Unattended Robot</b> works autonomously (by themselves) on the background.</li>
+                </ul>
+            </li>
+        </ul>
+    </form>
+</div>
+
+<div class="footer-copyright text-center py-3">© 2020 Copyright:
+    <a href="https://federiconavarrete.com"> Federico Navarrete</a>
+</div>
