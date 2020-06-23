@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { LocalStorage } from 'src/app/classes/local-storage';
 
 @Component({
   selector: 'app-uipath-payment',
@@ -8,21 +9,23 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class UipathPaymentComponent implements OnInit {
 
-  infoMSPowerAutomate = {
-    "studio": 2500,
-    "orchestrator": 20000,
-    "attended": 1500,
-    "unattended": 8000
-  };
+  infoUiPath: any;
 
   uiLocation: Array<Object>;
 
   uiPathForm: FormGroup;
   onPremises: boolean = true;
-  totalPerMonth:number = this.priceRounding(this.infoMSPowerAutomate.orchestrator / 12);
-  totalPerYear:number = this.infoMSPowerAutomate.orchestrator;
+  totalPerMonth:number;
+  totalPerYear:number;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder) { 
+    const storage = new LocalStorage();
+    const availableCopy = JSON.parse(storage.getLocalStorageValue("availableCopy"));
+    this.infoUiPath = availableCopy[1].UiPath.Prices;
+
+    this.totalPerMonth = this.priceRounding(this.infoUiPath.orchestrator.price / 12);
+    this.totalPerYear = this.infoUiPath.orchestrator.price;
+  }
 
   priceRounding(price:number) {
     return Math.round((price + Number.EPSILON) * 100) / 100;
@@ -58,11 +61,11 @@ export class UipathPaymentComponent implements OnInit {
   onChanges(): void {
     this.uiPathForm.valueChanges.subscribe(val => {
 
-      let studioPrice = val.withStudio ? this.infoMSPowerAutomate.studio : 0;
+      let studioPrice = val.withStudio ? this.infoUiPath.studio.price : 0;
 
-      this.totalPerYear = this.infoMSPowerAutomate.orchestrator
-                          + val.noAttended * this.infoMSPowerAutomate.attended
-                          + val.noUnattended * this.infoMSPowerAutomate.unattended
+      this.totalPerYear = this.infoUiPath.orchestrator.price
+                          + val.noAttended * this.infoUiPath.attended.price
+                          + val.noUnattended * this.infoUiPath.unattended.price
                           + studioPrice;
 
       this.totalPerMonth = this.priceRounding(this.totalPerYear / 12);

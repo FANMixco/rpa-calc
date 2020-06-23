@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { LocalStorage } from 'src/app/classes/local-storage';
 
 @Component({
   selector: 'app-ms-power-automate-per-users',
@@ -14,20 +15,17 @@ export class MsPowerAutomatePerUsersComponent implements OnInit {
   totalPerYear: number = 0;
   enableRobots: boolean = true;
 
-  infoMSPowerAutomate = {
-    "perUserPlan": 15,
-    "perUserPlanWithRPA": 40,
-    "rpaAddOn": 150,
-    "perFlow": 500,
-    "aiAddOn": 500,
-    "extraFlow": 100
-  };
+  infoMSPowerAutomate: any;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder) { 
+    const storage = new LocalStorage();
+    const availableCopy = JSON.parse(storage.getLocalStorageValue("availableCopy"));
+    this.infoMSPowerAutomate = availableCopy[0].MS.Prices;
+  }
 
   onChanges(): void {
     this.msPowerUsersForm.valueChanges.subscribe(val => {
-      this.totalNoRPA = val.txtUserNoRPA * this.infoMSPowerAutomate.perUserPlan;
+      this.totalNoRPA = val.txtUserNoRPA * this.infoMSPowerAutomate.perUserPlan.price;
 
       if (val.txtUserRPA > 0) {
         this.enableRobots = false;
@@ -36,10 +34,10 @@ export class MsPowerAutomatePerUsersComponent implements OnInit {
         val.txtRobot = 0;
       }
 
-      this.totalRPA = val.txtUserRPA * this.infoMSPowerAutomate.perUserPlanWithRPA
-                      + val.txtAINoRPA * this.infoMSPowerAutomate.aiAddOn
-                      + val.txtRobot * this.infoMSPowerAutomate.rpaAddOn
-                      + val.txtAI * this.infoMSPowerAutomate.aiAddOn;
+      this.totalRPA = val.txtUserRPA * this.infoMSPowerAutomate.perUserPlanWithRPA.price
+                      + val.txtAINoRPA * this.infoMSPowerAutomate.aiAddOn.price
+                      + val.txtRobot * this.infoMSPowerAutomate.rpaAddOn.price
+                      + val.txtAI * this.infoMSPowerAutomate.aiAddOn.price;
 
       this.totalPerMonth = this.totalNoRPA + this.totalRPA;
       this.totalPerYear = this.totalPerMonth * 12;
