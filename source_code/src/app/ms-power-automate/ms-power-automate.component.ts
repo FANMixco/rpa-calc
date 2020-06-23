@@ -12,10 +12,24 @@ export class MsPowerAutomateComponent implements OnInit {
   isOfficial:string;
   location:string;
 
-  constructor() { }
+  verifyData() {
+    let storage = new LocalStorage();
 
-  ngOnInit(): void {
-    const storage = new LocalStorage();
+    if (storage.getLocalStorageValue("isReady") === "true") {
+      this.getData();
+    }
+    else {
+      setTimeout(() => { this.getData() }, 1000);
+    }
+  }
+
+  constructor() {
+    this.verifyData();
+  }
+
+  getData() {
+    let storage = new LocalStorage();
+
     const availableCopy = JSON.parse(storage.getLocalStorageValue("availableCopy"));
     this.update = availableCopy[0].MS.Update;
 
@@ -23,4 +37,6 @@ export class MsPowerAutomateComponent implements OnInit {
         
     this.location = availableCopy[0].MS.Source.Link;
   }
+
+  ngOnInit(): void { }
 }

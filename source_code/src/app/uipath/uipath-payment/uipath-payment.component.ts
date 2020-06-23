@@ -18,7 +18,22 @@ export class UipathPaymentComponent implements OnInit {
   totalPerMonth:number;
   totalPerYear:number;
 
-  constructor(private formBuilder: FormBuilder) { 
+  constructor(private formBuilder: FormBuilder) {
+    this.verifyData();
+  }
+
+  verifyData() {
+    let storage = new LocalStorage();
+
+    if (storage.getLocalStorageValue("isReady") === "true") {
+      this.getData();
+    }
+    else {
+      setTimeout(() => { this.getData() }, 1000);
+    }
+  }
+
+  getData() {
     const storage = new LocalStorage();
     const availableCopy = JSON.parse(storage.getLocalStorageValue("availableCopy"));
     this.infoUiPath = availableCopy[1].UiPath.Prices;

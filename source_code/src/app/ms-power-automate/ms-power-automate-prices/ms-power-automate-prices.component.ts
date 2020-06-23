@@ -10,27 +10,41 @@ export class MsPowerAutomatePricesComponent implements OnInit {
 
   msResults:any = [];
 
-  constructor() { 
+  constructor() {
+    this.verifyData();
+  }
+
+  verifyData() {
+    let storage = new LocalStorage();
+
+    if (storage.getLocalStorageValue("isReady") === "true") {
+      this.getData();
+    }
+    else {
+      setTimeout(() => { this.getData() }, 1000);
+    }
+  }
+
+  getData() {
     const storage = new LocalStorage();
     const availableCopy = JSON.parse(storage.getLocalStorageValue("availableCopy"));
     const infoMS = availableCopy[0].MS.Prices;
 
     const keys = Object.keys(infoMS);
     for(let i = 0; i< keys.length; i++){
-        const key = keys[i];
-        let comments = '';
+      const key = keys[i];
+      let comments = '';
 
-        const val = infoMS[key];
+      const val = infoMS[key];
 
-        if (val.comments) {
-          comments = val.comments;
-        }
+      if (val.comments) {
+        comments = val.comments;
+      }
 
-        this.msResults.push([val.name, val.price, comments]);
+      this.msResults.push([val.name, val.price, comments]);
     }
   }
 
   ngOnInit(): void {
   }
-
 }

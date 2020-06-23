@@ -13,14 +13,29 @@ export class UipathComponent implements OnInit {
   location:string;
 
   constructor() {
-      const storage = new LocalStorage();
-      const availableCopy = JSON.parse(storage.getLocalStorageValue("availableCopy"));
-      this.update = availableCopy[1].UiPath.Update;
+    this.verifyData();
+  }
 
-      this.isOfficial = availableCopy[1].UiPath.Source.IsOfficial ? "Official" : "Unofficial";
-          
-      this.location = availableCopy[1].UiPath.Source.Link;
- }
+  verifyData() {
+    let storage = new LocalStorage();
+
+    if (storage.getLocalStorageValue("isReady") === "true") {
+      this.getData();
+    }
+    else {
+      setTimeout(() => { this.getData() }, 1000);
+    }
+  }
+
+  getData() {
+    const storage = new LocalStorage();
+    const availableCopy = JSON.parse(storage.getLocalStorageValue("availableCopy"));
+    this.update = availableCopy[1].UiPath.Update;
+
+    this.isOfficial = availableCopy[1].UiPath.Source.IsOfficial ? "Official" : "Unofficial";
+        
+    this.location = availableCopy[1].UiPath.Source.Link;
+  }
 
   ngOnInit(): void {
   }

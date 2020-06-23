@@ -17,10 +17,25 @@ export class MsPowerAutomatePerUsersComponent implements OnInit {
 
   infoMSPowerAutomate: any;
 
-  constructor(private formBuilder: FormBuilder) { 
+  getData() {
     const storage = new LocalStorage();
     const availableCopy = JSON.parse(storage.getLocalStorageValue("availableCopy"));
     this.infoMSPowerAutomate = availableCopy[0].MS.Prices;
+  }
+
+  verifyData() {
+    let storage = new LocalStorage();
+
+    if (storage.getLocalStorageValue("isReady") === "true") {
+      this.getData();
+    }
+    else {
+      setTimeout(() => { this.getData() }, 1000);
+    }
+  }
+
+  constructor(private formBuilder: FormBuilder) { 
+    this.verifyData();
   }
 
   onChanges(): void {
