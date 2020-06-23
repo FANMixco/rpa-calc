@@ -4,21 +4,13 @@
             <th>Product</th>
             <th>Price (US$) per Year</th>
         </tr>
-        <tr>
-            <td>UiPath Studio</td>
-            <td>2000.00 - 3000.00</td>
-        </tr>
-        <tr>
-            <td>Orchestrator (On-premises)</td>
-            <td>20000.00</td>
-        </tr>
-        <tr>
-            <td>Attended Robot</td>
-            <td>1200.00 - 1800.00</td>
-        </tr>
-        <tr>
-            <td>Unattended Robot</td>
-            <td>8000.00</td>
+        <tr *ngFor = "let row of uiPathResults">
+            <td>
+              {{row[0]}}
+            </td>
+            <td>
+              {{row[1]}}
+            </td>
         </tr>
     </table>
 
@@ -32,4 +24,8 @@
             </ul>
         </li>
     </ul>
+</div>
+
+<div class="footer-copyright text-center py-3">© 2020 Copyright:
+    <a href="https://federiconavarrete.com"> Federico Navarrete</a>
 </div>

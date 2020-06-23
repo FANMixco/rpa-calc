@@ -3,30 +3,18 @@
         <tr>
             <th>Plan</th>
             <th>Price (US$) per Month</th>
+            <th>Comments</th>
         </tr>
-        <tr>
-            <td>Per User Plan</td>
-            <td>15.00</td>
-        </tr>
-        <tr>
-            <td>Per User plan with Attended RPA</td>
-            <td>40.00</td>
-        </tr>
-        <tr>
-            <td>Per Flow Plan</td>
-            <td>500.00</td>
-        </tr>
-        <tr>
-            <td>Extra Flow</td>
-            <td>500.00</td>
-        </tr>
-        <tr>
-            <td>Unattended RPA add-on</td>
-            <td>150.00</td>
-        </tr>
-        <tr>
-            <td>AI Builder per <b>Unit</b></td>
-            <td>500.00</td>
+        <tr *ngFor = "let row of msResults">
+            <td>
+              {{row[0]}}
+            </td>
+            <td>
+              {{row[1]}}
+            </td>
+            <td>
+              {{row[2]}}
+            </td>
         </tr>
     </table>
     <h4>Notes:</h4>

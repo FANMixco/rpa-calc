@@ -122,5 +122,8 @@
       }
     }
   },
-  "defaultProject": "rpa-calc"
+  "defaultProject": "rpa-calc",
+  "cli": {
+    "analytics": false
+  }
 }

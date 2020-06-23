@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { FireBase } from './classes/fire-base';
+import { LocalStorage } from './classes/local-storage';
 
 @Component({
   selector: 'app-root',
@@ -17,5 +19,7 @@ export class AppComponent {
   }
   constructor(private _router: Router){
     this.router = _router.url;
+
+    new FireBase().updateData();
   }
 }

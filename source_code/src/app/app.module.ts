@@ -6,12 +6,12 @@ import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MsPowerAutomateComponent } from './ms-power-automate/ms-power-automate.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MsPowerAutomatePerUsersComponent } from './ms-power-automate-per-users/ms-power-automate-per-users.component';
-import { MsPowerAutomatePerFlowComponent } from './ms-power-automate-per-flow/ms-power-automate-per-flow.component';
-import { MsPowerAutomatePricesComponent } from './ms-power-automate-prices/ms-power-automate-prices.component';
+import { MsPowerAutomatePerUsersComponent } from './ms-power-automate/ms-power-automate-per-users/ms-power-automate-per-users.component';
+import { MsPowerAutomatePerFlowComponent } from './ms-power-automate/ms-power-automate-per-flow/ms-power-automate-per-flow.component';
+import { MsPowerAutomatePricesComponent } from './ms-power-automate/ms-power-automate-prices/ms-power-automate-prices.component';
 import { UipathComponent } from './uipath/uipath.component';
-import { UipathPricingComponent } from './uipath-pricing/uipath-pricing.component';
-import { UipathPaymentComponent } from './uipath-payment/uipath-payment.component';
+import { UipathPricingComponent } from './uipath/uipath-pricing/uipath-pricing.component';
+import { UipathPaymentComponent } from './uipath/uipath-payment/uipath-payment.component';
 
 @NgModule({
   declarations: [
