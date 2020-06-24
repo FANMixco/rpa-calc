@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { LocalStorage } from 'src/app/classes/local-storage';
+import { NotesGenerator } from 'src/app/classes/notes-generator';
 
 @Component({
   selector: 'app-uipath-payment',
@@ -14,18 +15,21 @@ export class UipathPaymentComponent implements OnInit {
   uiLocation: Array<Object>;
 
   uiPathForm: FormGroup;
+  storage:LocalStorage;
+
   onPremises: boolean = true;
   totalPerMonth:number;
   totalPerYear:number;
+  notes:string = "";
 
   constructor(private formBuilder: FormBuilder) {
+    this.storage = new LocalStorage();
     this.verifyData();
+    this.getNotes();
   }
 
   verifyData() {
-    let storage = new LocalStorage();
-
-    if (storage.getLocalStorageValue("isReady") === "true") {
+    if (this.storage.getLocalStorageValue("isReady") === "true") {
       this.getData();
     }
     else {
@@ -34,8 +38,7 @@ export class UipathPaymentComponent implements OnInit {
   }
 
   getData() {
-    const storage = new LocalStorage();
-    const availableCopy = JSON.parse(storage.getLocalStorageValue("availableCopy"));
+    const availableCopy = JSON.parse(this.storage.getLocalStorageValue("availableCopy"));
     this.infoUiPath = availableCopy[1].UiPath.Prices;
 
     this.totalPerMonth = this.priceRounding(this.infoUiPath.orchestrator.price / 12);
@@ -71,6 +74,14 @@ export class UipathPaymentComponent implements OnInit {
     ];
 
     this.uiPathForm.controls['uiLocation'].setValue(0, {onlySelf: true});
+  }
+
+  getNotes() {
+    const availableCopy = JSON.parse(this.storage.getLocalStorageValue("availableCopy"));
+
+    let notesGenerator = new NotesGenerator();
+
+    this.notes += `<ul>${notesGenerator.getList(availableCopy[1].UiPath.Notes)}</ul>`;
   }
 
   onChanges(): void {

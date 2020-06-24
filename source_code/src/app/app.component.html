@@ -11,9 +11,13 @@
           <li class="nav-item">
             <a class="nav-link" [routerLink]="['/uipath']">UiPath</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/automation-anywhere']">Automation Anywhere</a>
+          </li>
         </ul>
     </div>
 </nav>
 <app-ms-power-automate *ngIf="router == '/ms-power-automate'"></app-ms-power-automate>
 <app-uipath *ngIf="router == '/uipath'"></app-uipath>
+<app-automation-anywhere *ngIf="router == '/automation-anywhere'"></app-automation-anywhere>
 <router-outlet></router-outlet>

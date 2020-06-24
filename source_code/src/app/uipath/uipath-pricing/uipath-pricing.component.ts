@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalStorage } from 'src/app/classes/local-storage';
+import { NotesGenerator } from 'src/app/classes/notes-generator';
 
 @Component({
   selector: 'app-uipath-pricing',
@@ -9,26 +10,50 @@ import { LocalStorage } from 'src/app/classes/local-storage';
 export class UipathPricingComponent implements OnInit {
 
   uiPathResults:any = [];
+  storage:LocalStorage;
+  notes:string = "";
 
   constructor() {
-    const storage = new LocalStorage();
-    const availableCopy = JSON.parse(storage.getLocalStorageValue("availableCopy"));
+    this.storage = new LocalStorage();
+    this.verifyData();
+    this.getNotes();
+  }
+
+  verifyData() {
+    if (this.storage.getLocalStorageValue("isReady") === "true") {
+      this.getData();
+    }
+    else {
+      setTimeout(() => { this.getData() }, 1000);
+    }
+  }
+
+  getNotes() {
+    const availableCopy = JSON.parse(this.storage.getLocalStorageValue("availableCopy"));
+
+    let notesGenerator = new NotesGenerator();
+
+    this.notes += `<ul>${notesGenerator.getList(availableCopy[1].UiPath.Notes)}</ul>`;
+  }
+
+  getData() {
+    const availableCopy = JSON.parse(this.storage.getLocalStorageValue("availableCopy"));
     const infoUiPath = availableCopy[1].UiPath.Prices;
 
     const keys = Object.keys(infoUiPath);
     for(let i = 0; i< keys.length; i++){
-        const key = keys[i];
-        let price = '';
+      const key = keys[i];
+      let price = '';
 
-        const val = infoUiPath[key];
+      const val = infoUiPath[key];
 
-        if (val.priceExtended) {
-          price = val.priceExtended;
-        } else {
-          price = val.price.toString();
-        }
+      if (val.priceExtended) {
+        price = val.priceExtended;
+      } else {
+        price = val.price.toString();
+      }
 
-        this.uiPathResults.push([val.name, price]);
+      this.uiPathResults.push([val.name, price]);
     }
   }
 

@@ -1,0 +1,32 @@
+<div class="container" style="padding-top: 15px;">
+    <form [formGroup]="aaForm">
+        <div class="row">
+            <div class="col-sm">
+                <label for="extraBot"># of Extra Bots</label>
+                <input type="number" class="form-control" placeholder="Total" formControlName="extraBot" min="0" />
+            </div>
+            <div class="col-sm">
+                <label for="extraBot"># of Extra Users</label>
+                <input type="number" class="form-control" placeholder="Total" formControlName="extraUser" min="0" />
+            </div>
+        </div>
+        <br />
+        <h3>Total</h3>
+        <div class="row">
+            <div class="col-sm">
+                <div class="form-group">
+                    <label for="extraUser">Per Month in US$</label>
+                    <input class="form-control" placeholder="Total" value="{{totalPerMonth}}" readonly />
+                </div>
+            </div>
+            <div class="col-sm">
+                <div class="form-group">
+                    <label for="txtTotalPerYear">Per Year in US$</label>
+                    <input class="form-control" placeholder="Total" value="{{totalPerYear}}" readonly />
+                </div>
+            </div>
+        </div>
+    </form>
+    <h4>Notes:</h4>
+    <div [innerHTML]="notes"></div>
+</div>

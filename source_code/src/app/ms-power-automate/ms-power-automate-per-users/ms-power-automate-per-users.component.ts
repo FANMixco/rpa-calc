@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { LocalStorage } from 'src/app/classes/local-storage';
+import { NotesGenerator } from 'src/app/classes/notes-generator';
 
 @Component({
   selector: 'app-ms-power-automate-per-users',
@@ -8,25 +9,24 @@ import { LocalStorage } from 'src/app/classes/local-storage';
   styleUrls: ['./ms-power-automate-per-users.component.css']
 })
 export class MsPowerAutomatePerUsersComponent implements OnInit {
+
+  storage:LocalStorage;
   msPowerUsersForm: FormGroup;
   totalNoRPA: number = 0;
   totalRPA: number = 0;
   totalPerMonth: number = 0;
   totalPerYear: number = 0;
   enableRobots: boolean = true;
-
   infoMSPowerAutomate: any;
+  notes:string = "";
 
   getData() {
-    const storage = new LocalStorage();
-    const availableCopy = JSON.parse(storage.getLocalStorageValue("availableCopy"));
+    const availableCopy = JSON.parse(this.storage.getLocalStorageValue("availableCopy"));
     this.infoMSPowerAutomate = availableCopy[0].MS.Prices;
   }
 
   verifyData() {
-    let storage = new LocalStorage();
-
-    if (storage.getLocalStorageValue("isReady") === "true") {
+    if (this.storage.getLocalStorageValue("isReady") === "true") {
       this.getData();
     }
     else {
@@ -35,7 +35,17 @@ export class MsPowerAutomatePerUsersComponent implements OnInit {
   }
 
   constructor(private formBuilder: FormBuilder) { 
+    this.storage = new LocalStorage();
     this.verifyData();
+    this.getNotes();
+  }
+
+  getNotes() {
+    const availableCopy = JSON.parse(this.storage.getLocalStorageValue("availableCopy"));
+
+    let notesGenerator = new NotesGenerator();
+
+    this.notes += `<ul>${notesGenerator.getList(availableCopy[0].MS.Prices.perUserPlan.notes)}${notesGenerator.getList(availableCopy[0].MS.Notes)}</ul>`;
   }
 
   onChanges(): void {

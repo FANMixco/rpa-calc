@@ -11,11 +11,10 @@ export class MsPowerAutomateComponent implements OnInit {
   update:string;
   isOfficial:string;
   location:string;
+  storage:LocalStorage;
 
   verifyData() {
-    let storage = new LocalStorage();
-
-    if (storage.getLocalStorageValue("isReady") === "true") {
+    if (this.storage.getLocalStorageValue("isReady") === "true") {
       this.getData();
     }
     else {
@@ -24,13 +23,12 @@ export class MsPowerAutomateComponent implements OnInit {
   }
 
   constructor() {
+    this.storage = new LocalStorage();
     this.verifyData();
   }
 
   getData() {
-    let storage = new LocalStorage();
-
-    const availableCopy = JSON.parse(storage.getLocalStorageValue("availableCopy"));
+    const availableCopy = JSON.parse(this.storage.getLocalStorageValue("availableCopy"));
     this.update = availableCopy[0].MS.Update;
 
     this.isOfficial = availableCopy[0].MS.Source.IsOfficial ? "Official" : "Unofficial";

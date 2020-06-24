@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { LocalStorage } from '../classes/local-storage';
 
 @Component({
-  selector: 'app-uipath',
-  templateUrl: './uipath.component.html',
-  styleUrls: ['./uipath.component.css']
+  selector: 'app-automation-anywhere',
+  templateUrl: './automation-anywhere.component.html',
+  styleUrls: ['./automation-anywhere.component.css']
 })
-export class UipathComponent implements OnInit {
+export class AutomationAnywhereComponent implements OnInit {
 
   update:string;
   isOfficial:string;
@@ -29,11 +29,11 @@ export class UipathComponent implements OnInit {
 
   getData() {
     const availableCopy = JSON.parse(this.storage.getLocalStorageValue("availableCopy"));
-    this.update = availableCopy[1].UiPath.Update;
+    this.update = availableCopy[2].AA.Update;
 
-    this.isOfficial = availableCopy[1].UiPath.Source.IsOfficial ? "Official" : "Unofficial";
+    this.isOfficial = availableCopy[2].AA.Source.IsOfficial ? "Official" : "Unofficial";
         
-    this.location = availableCopy[1].UiPath.Source.Link;
+    this.location = availableCopy[2].AA.Source.Link;
   }
 
   ngOnInit(): void {

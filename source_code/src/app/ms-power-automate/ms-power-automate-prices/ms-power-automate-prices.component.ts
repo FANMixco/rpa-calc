@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalStorage } from 'src/app/classes/local-storage';
+import { NotesGenerator } from 'src/app/classes/notes-generator';
 
 @Component({
   selector: 'app-ms-power-automate-prices',
@@ -9,15 +10,25 @@ import { LocalStorage } from 'src/app/classes/local-storage';
 export class MsPowerAutomatePricesComponent implements OnInit {
 
   msResults:any = [];
+  storage:LocalStorage;
+  notes:string = "";
 
   constructor() {
+    this.storage = new LocalStorage();
     this.verifyData();
+    this.getNotes();
+  }
+
+  getNotes() {
+    const availableCopy = JSON.parse(this.storage.getLocalStorageValue("availableCopy"));
+
+    let notesGenerator = new NotesGenerator();
+
+    this.notes += `<ul>${notesGenerator.getList(availableCopy[0].MS.Prices.perUserPlan.notes)}${notesGenerator.getList(availableCopy[0].MS.Notes)}</ul>`;
   }
 
   verifyData() {
-    let storage = new LocalStorage();
-
-    if (storage.getLocalStorageValue("isReady") === "true") {
+    if (this.storage.getLocalStorageValue("isReady") === "true") {
       this.getData();
     }
     else {
@@ -26,8 +37,7 @@ export class MsPowerAutomatePricesComponent implements OnInit {
   }
 
   getData() {
-    const storage = new LocalStorage();
-    const availableCopy = JSON.parse(storage.getLocalStorageValue("availableCopy"));
+    const availableCopy = JSON.parse(this.storage.getLocalStorageValue("availableCopy"));
     const infoMS = availableCopy[0].MS.Prices;
 
     const keys = Object.keys(infoMS);
