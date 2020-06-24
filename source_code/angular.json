@@ -27,7 +27,9 @@
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/js/translationPlugin.js"
+            ]
           },
           "configurations": {
             "production": {

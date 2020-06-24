@@ -12,6 +12,7 @@ import { MsPowerAutomatePricesComponent } from './ms-power-automate/ms-power-aut
 import { UipathComponent } from './uipath/uipath.component';
 import { UipathPricingComponent } from './uipath/uipath-pricing/uipath-pricing.component';
 import { UipathPaymentComponent } from './uipath/uipath-payment/uipath-payment.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { UipathPaymentComponent } from './uipath/uipath-payment/uipath-payment.c
     MsPowerAutomatePricesComponent,
     UipathComponent,
     UipathPricingComponent,
-    UipathPaymentComponent
+    UipathPaymentComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
