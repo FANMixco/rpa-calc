@@ -16,7 +16,6 @@ export class MsPowerAutomatePricesComponent implements OnInit {
   constructor() {
     this.storage = new LocalStorage();
     this.verifyData();
-    this.getNotes();
   }
 
   getNotes() {
@@ -27,12 +26,19 @@ export class MsPowerAutomatePricesComponent implements OnInit {
     this.notes += `<ul>${notesGenerator.getList(availableCopy[0].MS.Prices.perUserPlan.notes)}${notesGenerator.getList(availableCopy[0].MS.Notes)}</ul>`;
   }
 
+  getAllData() {
+    this.getData();
+    this.getNotes();
+  }
+
   verifyData() {
     if (this.storage.getLocalStorageValue("isReady") === "true") {
-      this.getData();
+      this.getAllData();
     }
     else {
-      setTimeout(() => { this.getData() }, 1000);
+      setTimeout(() => { 
+        this.getAllData();
+      }, 1000);
     }
   }
 

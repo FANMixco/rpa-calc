@@ -16,15 +16,21 @@ export class UipathPricingComponent implements OnInit {
   constructor() {
     this.storage = new LocalStorage();
     this.verifyData();
+  }
+
+  getAllData() {
+    this.getData();
     this.getNotes();
   }
 
   verifyData() {
     if (this.storage.getLocalStorageValue("isReady") === "true") {
-      this.getData();
+      this.getAllData();
     }
     else {
-      setTimeout(() => { this.getData() }, 1000);
+      setTimeout(() => { 
+        this.getAllData();
+      }, 1000);
     }
   }
 
