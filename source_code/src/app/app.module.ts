@@ -13,6 +13,9 @@ import { UipathComponent } from './uipath/uipath.component';
 import { UipathPricingComponent } from './uipath/uipath-pricing/uipath-pricing.component';
 import { UipathPaymentComponent } from './uipath/uipath-payment/uipath-payment.component';
 import { FooterComponent } from './footer/footer.component';
+import { AutomationAnywhereComponent } from './automation-anywhere/automation-anywhere.component';
+import { AutomationAnywhereCloudComponent } from './automation-anywhere/automation-anywhere-cloud/automation-anywhere-cloud.component';
+import { AutomationAnywherePricingComponent } from './automation-anywhere/automation-anywhere-pricing/automation-anywhere-pricing.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,10 @@ import { FooterComponent } from './footer/footer.component';
     UipathComponent,
     UipathPricingComponent,
     UipathPaymentComponent,
-    FooterComponent
+    FooterComponent,
+    AutomationAnywhereComponent,
+    AutomationAnywhereCloudComponent,
+    AutomationAnywherePricingComponent
   ],
   imports: [
     BrowserModule,
