@@ -21,5 +21,9 @@ export class AppComponent {
     this.router = _router.url;
 
     new FireBase().updateData();
+
+    try {
+      googleTranslateElementInit();
+    } catch {}
   }
 }
