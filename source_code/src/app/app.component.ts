@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { FireBase } from './classes/fire-base';
-import { LocalStorage } from './classes/local-storage';
+declare function googleTranslateElementInit(): any;
 
 @Component({
   selector: 'app-root',
