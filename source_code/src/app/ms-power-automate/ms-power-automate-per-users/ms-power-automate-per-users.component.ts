@@ -51,7 +51,7 @@ export class MsPowerAutomatePerUsersComponent implements OnInit {
 
     let notesGenerator = new NotesGenerator();
 
-    this.notes += `<ul>${notesGenerator.getList(availableCopy[0].MS.Prices.perUserPlan.notes)}${notesGenerator.getList(availableCopy[0].MS.Notes)}</ul>`;
+    this.notes += `<ul>${notesGenerator.getList(availableCopy[0].MS.Prices.perUserPlan.notes)}${notesGenerator.getList(availableCopy[0].MS.Prices.perUserPlanWithRPA.notes)}${notesGenerator.getList(availableCopy[0].MS.Notes)}</ul>`;
   }
 
   onChanges(): void {
