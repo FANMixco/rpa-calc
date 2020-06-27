@@ -4,6 +4,7 @@ import { LocalStorage } from 'src/app/classes/local-storage';
 import { NotesGenerator } from 'src/app/classes/notes-generator';
 import { environment } from 'src/environments/environment.prod';
 import { GetCleanData } from 'src/app/classes/msPowerAutomate/get-clean-data';
+import { String } from 'typescript-string-operations';
 
 @Component({
   selector: 'app-ms-power-automate-per-flow',
@@ -18,6 +19,12 @@ export class MsPowerAutomatePerFlowComponent implements OnInit {
   totalPerYear:number;
   infoMSPowerAutomate:any;
   notes:string = "";
+  yourPackage:string = "";
+
+  readonly listFlow = "<li><b>Monthly:</b><br /><b>Total Flows:</b> {0} for <b>Unlimited Users</b>{1}{2}{3}</li>";  
+  readonly attendedRPAs = "<br /><b>Total Users:</b> {0} with <b>Total Attended Bots:</b> {1} & US${2} AI Credits"
+  readonly aiUnits = "<br /><b>Total AI Units:</b> US${0}";
+  readonly bots = "<br /><b>Total Unattended RPAs:</b> {0}";
 
   constructor(private formBuilder: FormBuilder) { 
     this.storage = new LocalStorage();
@@ -36,6 +43,8 @@ export class MsPowerAutomatePerFlowComponent implements OnInit {
     msCopy = getCleanData.getPerFlow();
 
     msCopy = getCleanData.getNotes();
+
+    this.yourPackage = String.Format(this.listFlow, msCopy.Prices.perFlow.flows, "", "", "");
 
     this.notes = `<ul>${environment.warning}${notesGenerator.getList(msCopy.Prices.perFlow.notes)}${notesGenerator.getList(msCopy.Notes)}</ul>`;
   }
@@ -73,7 +82,25 @@ export class MsPowerAutomatePerFlowComponent implements OnInit {
                             + val.txtAI * this.infoMSPowerAutomate.aiAddOn.price;
 
       this.totalPerYear = this.totalPerMonth * 12;
+
+      this.createPackage(val.txtExtraFlows, val.txtFlowNoRPA, val.txtAI, val.txtFlowRPA);
     });
+  }
+
+  createPackage(extraFlows:number, usersRPA:number, aiCreditsRPA:number, bots:number) {
+    let attended = "";
+
+    const aiTmpRPA = aiCreditsRPA > 0 ? String.Format(this.aiUnits, this.infoMSPowerAutomate.aiAddOn.price * aiCreditsRPA).toString() : "";
+
+    const totalBots =  bots > 0 ? String.Format(this.bots, bots) : "";
+
+    const totalFlows = extraFlows + this.infoMSPowerAutomate.perFlow.flows;
+
+    if (usersRPA > 0) {
+      attended = String.Format(this.attendedRPAs, usersRPA, usersRPA * this.infoMSPowerAutomate.perUserPlanWithRPA.attendedBot, usersRPA * this.infoMSPowerAutomate.perUserPlanWithRPA.aiCredits);
+    }
+
+    this.yourPackage = String.Format(this.listFlow, totalFlows, aiTmpRPA, attended, totalBots);     
   }
 
   ngOnInit(): void {

@@ -26,10 +26,10 @@ export class MsPowerAutomatePerUsersComponent implements OnInit {
   isPackageReady:boolean = false;
   yourPackage:string = "";
 
-  readonly listUser = "<li><b>Total Users:</b> {0} with Flows Only{1}</li>";
-  readonly listUserRPA = "<li><b>Total Users:</b> {0} + <b>Total Attended RPA Bots:</b>{1}</li>";
-  readonly aiCredits = " + <b>Total AI Credits:</b> {0}";
-  readonly bots = " + <b>Total RPA Unattended Bots:</b> {0}";
+  readonly listUser = "<li><b>Monthly:</b><br /><b>Total Users:</b> {0} with <b>Flows Only</b>{1}</li>";
+  readonly listUserRPA = "<li><b>Monthly:</b><br /><b>Total Users:</b> {0} with Flows, <b>Total Attended RPAs:</b> {1}, <b>Total AI Credits:</b> US${2}{3}{4}</li>";
+  readonly aiUnits = "<br /><b>Total AI Units:</b> US${0}";
+  readonly bots = "<br /><b>Total Unattended RPAs:</b> {0}";
 
   getData() {
     const availableCopy = JSON.parse(this.storage.getLocalStorageValue("availableCopy"));
@@ -101,24 +101,28 @@ export class MsPowerAutomatePerUsersComponent implements OnInit {
 
       this.totalPerMonth = this.totalNoRPA + this.totalRPA;
       this.totalPerYear = this.totalPerMonth * 12;
+
+      this.createPackage(val.txtUserNoRPA, val.txtAINoRPA, val.txtUserRPA, val.txtAI, val.txtRobot);
     });
   }
 
-  createPackage(users:number, aiCredits:number, usersRPA:number, aiCreditsRPA:number, botsTotal:number) {
-
+  createPackage(users:number, aiCredits:number, usersRPA:number, aiCreditsRPA:number, bots:number) {
     if (!(users > 0 || usersRPA > 0)) {
       this.yourPackage = "";
       this.isPackageReady = false;
     } else {
-     let tmpList = "";
+      let tmpList = "";
       if (users > 0) {
-        let aiTmp = aiCredits > 0 ? (this.infoMSPowerAutomate.aiAddOn.price * aiCredits).toString() : "";
+        const aiTmp = aiCredits > 0 ? String.Format(this.aiUnits, this.infoMSPowerAutomate.aiAddOn.price * aiCredits).toString() : "";
 
         tmpList += String.Format(this.listUser, users, aiTmp);
       }
 
       if (usersRPA > 0) {
+        const aiTmpRPA = aiCreditsRPA > 0 ? String.Format(this.aiUnits, this.infoMSPowerAutomate.aiAddOn.price * aiCreditsRPA).toString() : "";
+        const totalBots =  bots > 0 ? String.Format(this.bots, bots) : "";
 
+        tmpList += String.Format(this.listUserRPA, usersRPA, usersRPA * this.infoMSPowerAutomate.perUserPlanWithRPA.attendedBot, usersRPA * this.infoMSPowerAutomate.perUserPlanWithRPA.aiCredits, totalBots, aiTmpRPA);
       }
 
       this.yourPackage = tmpList;
