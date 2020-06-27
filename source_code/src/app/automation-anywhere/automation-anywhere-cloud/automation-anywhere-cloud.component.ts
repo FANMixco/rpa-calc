@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { LocalStorage } from 'src/app/classes/local-storage';
 import { NotesGenerator } from 'src/app/classes/notes-generator';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-automation-anywhere-cloud',
@@ -50,7 +51,7 @@ export class AutomationAnywhereCloudComponent implements OnInit {
 
     let notesGenerator = new NotesGenerator();
 
-    this.notes += `<ul>${notesGenerator.getList(availableCopy[2].AA.Prices.cloud.notes)}${notesGenerator.getList(availableCopy[2].AA.Notes)}</ul>`;
+    this.notes += `<ul>${environment.warning}${notesGenerator.getList(availableCopy[2].AA.Prices.cloud.notes)}${notesGenerator.getList(availableCopy[2].AA.Notes)}</ul>`;
   }
 
   ngOnInit(): void {
