@@ -1,4 +1,5 @@
 import { LocalStorage } from './local-storage';
+import { environment } from 'src/environments/environment.prod';
 
 export class FireBase {
     updateData() {
@@ -6,13 +7,13 @@ export class FireBase {
       let storage = new LocalStorage();
       storage.setLocalStorage("isReady", "false");
 
-      fetch(`https://rpa-prices.firebaseio.com/version.json`)
+      fetch(environment.version)
          .then(function(response) {
             return response.json();
          })
          .then(function(version) {
             if (storage.getLocalStorageValue("currentCache") !== version) {
-               fetch(`https://rpa-prices.firebaseio.com/technologies.json`)
+               fetch(environment.techs)
                .then(function(response) {
                   return response.json();
                })

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { LocalStorage } from 'src/app/classes/local-storage';
 import { NotesGenerator } from 'src/app/classes/notes-generator';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-ms-power-automate-per-users',
@@ -51,7 +52,7 @@ export class MsPowerAutomatePerUsersComponent implements OnInit {
 
     let notesGenerator = new NotesGenerator();
 
-    this.notes += `<ul>${notesGenerator.getList(availableCopy[0].MS.Prices.perUserPlan.notes)}${notesGenerator.getList(availableCopy[0].MS.Prices.perUserPlanWithRPA.notes)}${notesGenerator.getList(availableCopy[0].MS.Notes)}</ul>`;
+    this.notes += `<ul>${environment.warning}${notesGenerator.getList(availableCopy[0].MS.Prices.perUserPlan.notes)}${notesGenerator.getList(availableCopy[0].MS.Prices.perUserPlanWithRPA.notes)}${notesGenerator.getList(availableCopy[0].MS.Notes)}</ul>`;
   }
 
   onChanges(): void {

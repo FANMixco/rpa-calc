@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { LocalStorage } from 'src/app/classes/local-storage';
 import { NotesGenerator } from 'src/app/classes/notes-generator';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-uipath-payment',
@@ -87,7 +88,7 @@ export class UipathPaymentComponent implements OnInit {
 
     let notesGenerator = new NotesGenerator();
 
-    this.notes += `<ul>${notesGenerator.getList(availableCopy[1].UiPath.Notes)}</ul>`;
+    this.notes += `<ul>${environment.warning}${notesGenerator.getList(availableCopy[1].UiPath.Notes)}</ul>`;
   }
 
   onChanges(): void {
