@@ -3,6 +3,7 @@ import { LocalStorage } from 'src/app/classes/local-storage';
 import { NotesGenerator } from 'src/app/classes/notes-generator';
 import { environment } from 'src/environments/environment.prod';
 import { MSParser } from 'src/app/classes/msPowerAutomate/msparser';
+import { String } from 'typescript-string-operations';
 
 @Component({
   selector: 'app-ms-power-automate-prices',
@@ -29,7 +30,23 @@ export class MsPowerAutomatePricesComponent implements OnInit {
 
     const msParser = new MSParser();
 
+    //Per Flow
+
     msCopy.Prices.perFlow.notes[0] = msParser.cleanPerFlowPlan(msCopy.Prices, 0, "flows", "users");
+
+    //Per User
+
+    msCopy.Prices.perUserPlan.notes[0] = msParser.cleanPerUserPlan(msCopy.Prices.perUserPlan, 0);
+
+    //Per User With RPA
+
+    msCopy.Prices.perUserPlanWithRPA.notes[0].notes[0] = msParser.cleanPerUserPlanWithRPA(msCopy.Prices.perUserPlanWithRPA, "flows", 0, 0);
+
+    msCopy.Prices.perUserPlanWithRPA.notes[0].notes[1] = msParser.cleanPerUserPlanWithRPA(msCopy.Prices.perUserPlanWithRPA, "attendedBot", 0, 1);
+
+    msCopy.Prices.perUserPlanWithRPA.notes[0].notes[2] = msParser.cleanPerUserPlanWithRPA(msCopy.Prices.perUserPlanWithRPA, "aiCredits", 0, 2);
+
+    //Notes
 
     msCopy.Notes[3] = msParser.cleanCommonNotes(msCopy, 3, "DB", "Files");
 
@@ -55,6 +72,7 @@ export class MsPowerAutomatePricesComponent implements OnInit {
   getData() {
     const availableCopy = JSON.parse(this.storage.getLocalStorageValue("availableCopy"));
     const infoMS = availableCopy[0].MS.Prices;
+    const msParser = new MSParser();
 
     const keys = Object.keys(infoMS);
     for(let i = 0; i< keys.length; i++){
@@ -64,6 +82,18 @@ export class MsPowerAutomatePricesComponent implements OnInit {
       const val = infoMS[key];
 
       if (val.comments) {
+        switch (key) {
+          case "perFlow":
+            val.comments = String.Format(val.comments, msParser.totalUnlimited(val.flows), msParser.totalUnlimited(val.users));
+            break;
+          case "perUserPlan":
+            val.comments = String.Format(val.comments, msParser.totalUnlimited(val.flows));
+            break;
+          case "perUserPlanWithRPA":
+            val.comments = String.Format(val.comments, msParser.totalUnlimited(val.flows));
+            break;
+        }
+
         comments = val.comments;
       }
 

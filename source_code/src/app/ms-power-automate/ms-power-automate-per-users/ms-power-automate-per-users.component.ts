@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { LocalStorage } from 'src/app/classes/local-storage';
 import { NotesGenerator } from 'src/app/classes/notes-generator';
 import { environment } from 'src/environments/environment.prod';
+import { MSParser } from 'src/app/classes/msPowerAutomate/msparser';
 
 @Component({
   selector: 'app-ms-power-automate-per-users',
@@ -50,9 +51,29 @@ export class MsPowerAutomatePerUsersComponent implements OnInit {
   getNotes() {
     const availableCopy = JSON.parse(this.storage.getLocalStorageValue("availableCopy"));
 
-    let notesGenerator = new NotesGenerator();
+    const notesGenerator = new NotesGenerator();
 
-    this.notes += `<ul>${environment.warning}${notesGenerator.getList(availableCopy[0].MS.Prices.perUserPlan.notes)}${notesGenerator.getList(availableCopy[0].MS.Prices.perUserPlanWithRPA.notes)}${notesGenerator.getList(availableCopy[0].MS.Notes)}</ul>`;
+    const msCopy = availableCopy[0].MS;
+
+    const msParser = new MSParser();
+
+    //Per User
+
+    msCopy.Prices.perUserPlan.notes[0] = msParser.cleanPerUserPlan(msCopy.Prices.perUserPlan, 0);
+
+    //Per User With RPA
+
+    msCopy.Prices.perUserPlanWithRPA.notes[0].notes[0] = msParser.cleanPerUserPlanWithRPA(msCopy.Prices.perUserPlanWithRPA, "flows", 0, 0);
+
+    msCopy.Prices.perUserPlanWithRPA.notes[0].notes[1] = msParser.cleanPerUserPlanWithRPA(msCopy.Prices.perUserPlanWithRPA, "attendedBot", 0, 1);
+
+    msCopy.Prices.perUserPlanWithRPA.notes[0].notes[2] = msParser.cleanPerUserPlanWithRPA(msCopy.Prices.perUserPlanWithRPA, "aiCredits", 0, 2);
+
+    //Notes
+
+    msCopy.Notes[3] = msParser.cleanCommonNotes(msCopy, 3, "DB", "Files");
+
+    this.notes += `<ul>${environment.warning}${notesGenerator.getList(msCopy.Prices.perUserPlan.notes)}${notesGenerator.getList(msCopy.Prices.perUserPlanWithRPA.notes)}${notesGenerator.getList(msCopy.Notes)}</ul>`;
   }
 
   onChanges(): void {

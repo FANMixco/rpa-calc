@@ -31,11 +31,15 @@ export class MsPowerAutomatePerFlowComponent implements OnInit {
 
     const msParser = new MSParser();
 
+    const notesGenerator = new NotesGenerator();
+
+    //Per Flow
+
     msCopy.Prices.perFlow.notes[0] = msParser.cleanPerFlowPlan(msCopy.Prices, 0, "flows", "users");
 
-    msCopy.Notes[3] = msParser.cleanCommonNotes(msCopy, 3, "DB", "Files");
+    //Notes
 
-    const notesGenerator = new NotesGenerator();
+    msCopy.Notes[3] = msParser.cleanCommonNotes(msCopy, 3, "DB", "Files");
 
     this.notes = `<ul>${environment.warning}${notesGenerator.getList(msCopy.Prices.perFlow.notes)}${notesGenerator.getList(msCopy.Notes)}</ul>`;
   }
