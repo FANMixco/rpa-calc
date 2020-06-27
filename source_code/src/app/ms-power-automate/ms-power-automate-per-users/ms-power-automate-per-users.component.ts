@@ -25,11 +25,13 @@ export class MsPowerAutomatePerUsersComponent implements OnInit {
   notes:string = "";
   isPackageReady:boolean = false;
   yourPackage:string = "";
+  common:string = "";
 
-  readonly listUser = "<li><b>Monthly:</b><br /><b>Total Users:</b> {0} with <b>Flows Only</b>{1}</li>";
-  readonly listUserRPA = "<li><b>Monthly:</b><br /><b>Total Users:</b> {0} with Flows, <b>Total Attended RPAs:</b> {1}, <b>Total AI Credits:</b> US${2}{3}{4}</li>";
-  readonly aiUnits = "<br /><b>Total AI Units:</b> US${0}";
-  readonly bots = "<br /><b>Total Unattended RPAs:</b> {0}";
+  readonly listUser = "<li><b>Monthly:</b><br /><b>Total Users:</b> {0} with <b>Unlimited Flows Only</b>{1}{2}</li>";
+  readonly commonDataService = "<br /><b>Common Data Service:</b><ul><li><b>Database:</b> {0} MB</li><li><b>Files:</b> {1} MB</li></ul>";
+  readonly listUserRPA = "<li><b>Monthly:</b><br /><b>Total Users:</b> {0} with Unlimited Flows<br /><b>Total Attended RPAs:</b> {1}<br /><b>Total AI Credits:</b> US${2} per User{3}{4}{5}</li>";
+  readonly aiUnits = "<b>Total AI Units:</b> US${0}";
+  readonly bots = "<b>Total Unattended RPAs:</b> {0}";
 
   getData() {
     const availableCopy = JSON.parse(this.storage.getLocalStorageValue("availableCopy"));
@@ -72,6 +74,8 @@ export class MsPowerAutomatePerUsersComponent implements OnInit {
 
     msCopy = getCleanData.getNotes();
 
+    this.common = String.Format(this.commonDataService, msCopy.CommonDataService.DB, msCopy.CommonDataService.Files);
+
     this.notes += `<ul>${environment.warning}${notesGenerator.getList(msCopy.Prices.perUserPlan.notes)}${notesGenerator.getList(msCopy.Prices.perUserPlanWithRPA.notes)}${notesGenerator.getList(msCopy.Notes)}</ul>`;
   }
 
@@ -107,22 +111,28 @@ export class MsPowerAutomatePerUsersComponent implements OnInit {
   }
 
   createPackage(users:number, aiCredits:number, usersRPA:number, aiCreditsRPA:number, bots:number) {
+    const availableCopy = JSON.parse(this.storage.getLocalStorageValue("availableCopy"));
+    const msCopy = availableCopy[0].MS;
+
     if (!(users > 0 || usersRPA > 0)) {
       this.yourPackage = "";
       this.isPackageReady = false;
     } else {
       let tmpList = "";
+
       if (users > 0) {
         const aiTmp = aiCredits > 0 ? String.Format(this.aiUnits, this.infoMSPowerAutomate.aiAddOn.price * aiCredits).toString() : "";
 
-        tmpList += String.Format(this.listUser, users, aiTmp);
+        tmpList += String.Format(this.listUser, users, this.common, aiTmp);
       }
 
       if (usersRPA > 0) {
         const aiTmpRPA = aiCreditsRPA > 0 ? String.Format(this.aiUnits, this.infoMSPowerAutomate.aiAddOn.price * aiCreditsRPA).toString() : "";
         const totalBots =  bots > 0 ? String.Format(this.bots, bots) : "";
 
-        tmpList += String.Format(this.listUserRPA, usersRPA, usersRPA * this.infoMSPowerAutomate.perUserPlanWithRPA.attendedBot, usersRPA * this.infoMSPowerAutomate.perUserPlanWithRPA.aiCredits, totalBots, aiTmpRPA);
+        const bl = aiCreditsRPA > 0 && bots > 0 ? "<br />" : "";
+
+        tmpList += String.Format(this.listUserRPA, usersRPA, usersRPA * this.infoMSPowerAutomate.perUserPlanWithRPA.attendedBot, this.infoMSPowerAutomate.perUserPlanWithRPA.aiCredits, this.common, totalBots, bl + aiTmpRPA);
       }
 
       this.yourPackage = tmpList;
