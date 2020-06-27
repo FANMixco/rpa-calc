@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { LocalStorage } from 'src/app/classes/local-storage';
 import { NotesGenerator } from 'src/app/classes/notes-generator';
 import { environment } from 'src/environments/environment.prod';
-import { MSParser } from 'src/app/classes/msPowerAutomate/msparser';
+import { GetCleanData } from 'src/app/classes/msPowerAutomate/get-clean-data';
 
 @Component({
   selector: 'app-ms-power-automate-per-flow',
@@ -27,19 +27,15 @@ export class MsPowerAutomatePerFlowComponent implements OnInit {
   getNotes() {
     const availableCopy = JSON.parse(this.storage.getLocalStorageValue("availableCopy"));
 
-    const msCopy = availableCopy[0].MS;
-
-    const msParser = new MSParser();
+    let msCopy = availableCopy[0].MS;
 
     const notesGenerator = new NotesGenerator();
 
-    //Per Flow
+    const getCleanData = new GetCleanData(msCopy);
 
-    msCopy.Prices.perFlow.notes[0] = msParser.cleanPerFlowPlan(msCopy.Prices, 0, "flows", "users");
+    msCopy = getCleanData.getPerFlow();
 
-    //Notes
-
-    msCopy.Notes[3] = msParser.cleanCommonNotes(msCopy, 3, "DB", "Files");
+    msCopy = getCleanData.getNotes();
 
     this.notes = `<ul>${environment.warning}${notesGenerator.getList(msCopy.Prices.perFlow.notes)}${notesGenerator.getList(msCopy.Notes)}</ul>`;
   }

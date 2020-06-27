@@ -68,6 +68,11 @@
             </div>
         </div>
 
+        <div *ngIf="isPackageReady">
+            <h4>Your package includes:</h4>
+            <ul>{{yourPackage}}</ul>
+        </div>
+
         <h4>Notes:</h4>
         <div [innerHTML]="notes"></div>
     </form>

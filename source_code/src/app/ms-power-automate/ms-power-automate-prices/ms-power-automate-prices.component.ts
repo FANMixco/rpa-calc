@@ -4,6 +4,7 @@ import { NotesGenerator } from 'src/app/classes/notes-generator';
 import { environment } from 'src/environments/environment.prod';
 import { MSParser } from 'src/app/classes/msPowerAutomate/msparser';
 import { String } from 'typescript-string-operations';
+import { GetCleanData } from 'src/app/classes/msPowerAutomate/get-clean-data';
 
 @Component({
   selector: 'app-ms-power-automate-prices',
@@ -26,30 +27,18 @@ export class MsPowerAutomatePricesComponent implements OnInit {
 
     const notesGenerator = new NotesGenerator();
 
-    const msCopy = availableCopy[0].MS;
+    let msCopy = availableCopy[0].MS;
 
-    const msParser = new MSParser();
+    const getCleanData = new GetCleanData(msCopy);
 
-    //Per Flow
+    msCopy = getCleanData.getPerFlow();
 
-    msCopy.Prices.perFlow.notes[0] = msParser.cleanPerFlowPlan(msCopy.Prices, 0, "flows", "users");
+    msCopy = getCleanData.getPerUser();
 
-    //Per User
+    msCopy = getCleanData.getPerUserPlanWithRPA();
 
-    msCopy.Prices.perUserPlan.notes[0] = msParser.cleanPerUserPlan(msCopy.Prices.perUserPlan, 0);
-
-    //Per User With RPA
-
-    msCopy.Prices.perUserPlanWithRPA.notes[0].notes[0] = msParser.cleanPerUserPlanWithRPA(msCopy.Prices.perUserPlanWithRPA, "flows", 0, 0);
-
-    msCopy.Prices.perUserPlanWithRPA.notes[0].notes[1] = msParser.cleanPerUserPlanWithRPA(msCopy.Prices.perUserPlanWithRPA, "attendedBot", 0, 1);
-
-    msCopy.Prices.perUserPlanWithRPA.notes[0].notes[2] = msParser.cleanPerUserPlanWithRPA(msCopy.Prices.perUserPlanWithRPA, "aiCredits", 0, 2);
-
-    //Notes
-
-    msCopy.Notes[3] = msParser.cleanCommonNotes(msCopy, 3, "DB", "Files");
-
+    msCopy = getCleanData.getNotes();
+    
     this.notes += `<ul>${environment.warning}${notesGenerator.getList(msCopy.Prices.perUserPlan.notes)}${notesGenerator.getList(msCopy.Prices.perUserPlanWithRPA.notes)}${notesGenerator.getList(msCopy.Prices.perFlow.notes)}${notesGenerator.getList(msCopy.Notes)}</ul>`;
   }
 
