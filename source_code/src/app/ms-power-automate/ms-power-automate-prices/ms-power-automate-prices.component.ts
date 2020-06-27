@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LocalStorage } from 'src/app/classes/local-storage';
 import { NotesGenerator } from 'src/app/classes/notes-generator';
 import { environment } from 'src/environments/environment.prod';
+import { MSParser } from 'src/app/classes/msPowerAutomate/msparser';
 
 @Component({
   selector: 'app-ms-power-automate-prices',
@@ -22,9 +23,17 @@ export class MsPowerAutomatePricesComponent implements OnInit {
   getNotes() {
     const availableCopy = JSON.parse(this.storage.getLocalStorageValue("availableCopy"));
 
-    let notesGenerator = new NotesGenerator();
+    const notesGenerator = new NotesGenerator();
 
-    this.notes += `<ul>${environment.warning}${notesGenerator.getList(availableCopy[0].MS.Prices.perUserPlan.notes)}${notesGenerator.getList(availableCopy[0].MS.Prices.perUserPlanWithRPA.notes)}${notesGenerator.getList(availableCopy[0].MS.Prices.perFlow.notes)}${notesGenerator.getList(availableCopy[0].MS.Notes)}</ul>`;
+    const msCopy = availableCopy[0].MS;
+
+    const msParser = new MSParser();
+
+    msCopy.Prices.perFlow.notes[0] = msParser.cleanPerFlowPlan(msCopy.Prices, 0, "flows", "users");
+
+    msCopy.Notes[3] = msParser.cleanCommonNotes(msCopy, 3, "DB", "Files");
+
+    this.notes += `<ul>${environment.warning}${notesGenerator.getList(availableCopy[0].MS.Prices.perUserPlan.notes)}${notesGenerator.getList(availableCopy[0].MS.Prices.perUserPlanWithRPA.notes)}${notesGenerator.getList(msCopy.Prices.perFlow.notes)}${notesGenerator.getList(msCopy.Notes)}</ul>`;
   }
 
   getAllData() {
