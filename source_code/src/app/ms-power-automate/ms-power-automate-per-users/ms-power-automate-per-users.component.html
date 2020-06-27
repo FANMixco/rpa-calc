@@ -11,7 +11,7 @@
             <div class="col-sm">
                 <div class="form-group">
                     <label for="txtAINoRPA"># of AI <b>Units</b></label>
-                    <input type="number" class="form-control" placeholder="Total" formControlName="txtAINoRPA" min="0" />
+                    <input type="number" class="form-control" placeholder="Total" formControlName="txtAINoRPA" min="0" [readonly]="enableAI" />
                 </div>
             </div>
             <div class="col-sm">
@@ -41,7 +41,7 @@
             <div class="col-sm">
                 <div class="form-group">
                     <label for="txtAI"># of AI <b>Units</b></label>
-                    <input type="number" class="form-control" placeholder="Total" formControlName="txtAI" min="0" />
+                    <input type="number" class="form-control" placeholder="Total" formControlName="txtAI" min="0" [readonly]="enableRobots"  />
                 </div>
             </div>
             <div class="col-sm">
@@ -66,6 +66,11 @@
                     <input class="form-control" placeholder="Total" value="{{totalPerYear}}" readonly />
                 </div>
             </div>
+        </div>
+
+        <div *ngIf="isPackageReady">
+            <h4>Your package includes:</h4>
+            <ul>{{yourPackage}}</ul>
         </div>
 
         <h4>Notes:</h4>
