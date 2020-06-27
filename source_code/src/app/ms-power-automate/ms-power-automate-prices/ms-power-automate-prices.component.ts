@@ -50,7 +50,7 @@ export class MsPowerAutomatePricesComponent implements OnInit {
 
     msCopy.Notes[3] = msParser.cleanCommonNotes(msCopy, 3, "DB", "Files");
 
-    this.notes += `<ul>${environment.warning}${notesGenerator.getList(availableCopy[0].MS.Prices.perUserPlan.notes)}${notesGenerator.getList(availableCopy[0].MS.Prices.perUserPlanWithRPA.notes)}${notesGenerator.getList(msCopy.Prices.perFlow.notes)}${notesGenerator.getList(msCopy.Notes)}</ul>`;
+    this.notes += `<ul>${environment.warning}${notesGenerator.getList(msCopy.Prices.perUserPlan.notes)}${notesGenerator.getList(msCopy.Prices.perUserPlanWithRPA.notes)}${notesGenerator.getList(msCopy.Prices.perFlow.notes)}${notesGenerator.getList(msCopy.Notes)}</ul>`;
   }
 
   getAllData() {
