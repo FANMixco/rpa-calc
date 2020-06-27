@@ -70,7 +70,7 @@
 
         <div *ngIf="isPackageReady">
             <h4>Your package includes:</h4>
-            <ul>{{yourPackage}}</ul>
+            <ul [innerHTML]="yourPackage"></ul>
         </div>
 
         <h4>Notes:</h4>
