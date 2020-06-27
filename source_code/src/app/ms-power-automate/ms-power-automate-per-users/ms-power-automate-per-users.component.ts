@@ -4,6 +4,7 @@ import { LocalStorage } from 'src/app/classes/local-storage';
 import { NotesGenerator } from 'src/app/classes/notes-generator';
 import { environment } from 'src/environments/environment.prod';
 import { GetCleanData } from 'src/app/classes/msPowerAutomate/get-clean-data';
+import { String } from 'typescript-string-operations';
 
 @Component({
   selector: 'app-ms-power-automate-per-users',
@@ -19,10 +20,16 @@ export class MsPowerAutomatePerUsersComponent implements OnInit {
   totalPerMonth: number = 0;
   totalPerYear: number = 0;
   enableRobots: boolean = true;
+  enableAI: boolean = true;
   infoMSPowerAutomate: any;
   notes:string = "";
   isPackageReady:boolean = false;
   yourPackage:string = "";
+
+  readonly listUser = "<li><b>Total Users:</b> {0} with Flows Only{1}</li>";
+  readonly listUserRPA = "<li><b>Total Users:</b> {0} + <b>Total Attended RPA Bots:</b>{1}</li>";
+  readonly aiCredits = " + <b>Total AI Credits:</b> {0}";
+  readonly bots = " + <b>Total RPA Unattended Bots:</b> {0}";
 
   getData() {
     const availableCopy = JSON.parse(this.storage.getLocalStorageValue("availableCopy"));
@@ -72,11 +79,19 @@ export class MsPowerAutomatePerUsersComponent implements OnInit {
     this.msPowerUsersForm.valueChanges.subscribe(val => {
       this.totalNoRPA = val.txtUserNoRPA * this.infoMSPowerAutomate.perUserPlan.price;
 
+      if (val.txtUserNoRPA > 0) {
+        this.enableAI = false;
+      } else {
+        this.enableAI = true;
+        val.txtAINoRPA = 0;
+      }
+
       if (val.txtUserRPA > 0) {
         this.enableRobots = false;
       } else {
         this.enableRobots = true;
         val.txtRobot = 0;
+        val.txtAI = 0;
       }
 
       this.totalRPA = val.txtUserRPA * this.infoMSPowerAutomate.perUserPlanWithRPA.price
@@ -87,6 +102,28 @@ export class MsPowerAutomatePerUsersComponent implements OnInit {
       this.totalPerMonth = this.totalNoRPA + this.totalRPA;
       this.totalPerYear = this.totalPerMonth * 12;
     });
+  }
+
+  createPackage(users:number, aiCredits:number, usersRPA:number, aiCreditsRPA:number, botsTotal:number) {
+
+    if (!(users > 0 || usersRPA > 0)) {
+      this.yourPackage = "";
+      this.isPackageReady = false;
+    } else {
+     let tmpList = "";
+      if (users > 0) {
+        let aiTmp = aiCredits > 0 ? (this.infoMSPowerAutomate.aiAddOn.price * aiCredits).toString() : "";
+
+        tmpList += String.Format(this.listUser, users, aiTmp);
+      }
+
+      if (usersRPA > 0) {
+
+      }
+
+      this.yourPackage = tmpList;
+      this.isPackageReady = true;
+    }
   }
 
   ngOnInit(): void {
