@@ -1,10 +1,10 @@
 # RPA Calculator
 
-Do you believe that transparency is crucial? For years I've been trying to understand the payments related to Robotic Process Automation. I've worked with UiPath and Automation Anywhere, and there is no greater secret that their prices, the only way to know your bill is to call the Sales Team.
+Do you believe that transparency is crucial? For years I've been trying to understand the payments related to Robotic Process Automation. I've worked with UiPath and Automation Anywhere, and there is no greater secret than their prices, the only way to know your bill is to call the Sales Team.
 
 Recently, I started to work with Microsoft Power Automate. It's a more transparent solution, but the costs are quite confusing. It's very tricky to know what you really need and a small misstep, and you're going to pay a huge bill every month.
 
-For all these reasons, I decided to create this Calculator that can give you some estimations, understand what you really need and save considerable money every month. At this point, I support the following RPAs:
+For all these reasons, I decided to create this Calculator that can give you some estimations, understand what you really need, and save considerable money every month. At this point, I support the following RPAs:
 
 - Automation Anywhere (partially, IQ Bots and On-Premises prices are missing).
 - Microsoft Power Automate (fully supported).
