@@ -83,25 +83,31 @@ export class MsPowerAutomatePerUsersComponent implements OnInit {
     this.msPowerUsersForm.valueChanges.subscribe(val => {
       this.totalNoRPA = val.txtUserNoRPA * this.infoMSPowerAutomate.perUserPlan.price;
 
+      let txtAINoRPA = val.txtAINoRPA;
+      let txtRobot = val.txtRobot;
+      let txtAI = val.txtAI;
+
       if (val.txtUserNoRPA > 0) {
         this.enableAI = false;
       } else {
         this.enableAI = true;
-        val.txtAINoRPA = 0;
+        txtAINoRPA = 0;
+        this.msPowerUsersForm.patchValue({ txtAINoRPA: 0 }, {emitEvent: false});
       }
 
       if (val.txtUserRPA > 0) {
         this.enableRobots = false;
       } else {
         this.enableRobots = true;
-        val.txtRobot = 0;
-        val.txtAI = 0;
+        txtRobot = 0;
+        txtAI = 0;
+        this.msPowerUsersForm.patchValue({ txtRobot: 0, txtAI: 0 }, {emitEvent: false});
       }
 
       this.totalRPA = val.txtUserRPA * this.infoMSPowerAutomate.perUserPlanWithRPA.price
-                      + val.txtAINoRPA * this.infoMSPowerAutomate.aiAddOn.price
-                      + val.txtRobot * this.infoMSPowerAutomate.rpaAddOn.price
-                      + val.txtAI * this.infoMSPowerAutomate.aiAddOn.price;
+                      + txtAINoRPA * this.infoMSPowerAutomate.aiAddOn.price
+                      + txtRobot * this.infoMSPowerAutomate.rpaAddOn.price
+                      + txtAI * this.infoMSPowerAutomate.aiAddOn.price;
 
       this.totalPerMonth = this.totalNoRPA + this.totalRPA;
       this.totalPerYear = this.totalPerMonth * 12;
@@ -111,9 +117,6 @@ export class MsPowerAutomatePerUsersComponent implements OnInit {
   }
 
   createPackage(users:number, aiCredits:number, usersRPA:number, aiCreditsRPA:number, bots:number) {
-    const availableCopy = JSON.parse(this.storage.getLocalStorageValue("availableCopy"));
-    const msCopy = availableCopy[0].MS;
-
     if (!(users > 0 || usersRPA > 0)) {
       this.yourPackage = "";
       this.isPackageReady = false;
