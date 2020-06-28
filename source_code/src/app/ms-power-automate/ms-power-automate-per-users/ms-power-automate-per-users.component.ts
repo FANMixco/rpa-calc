@@ -27,9 +27,9 @@ export class MsPowerAutomatePerUsersComponent implements OnInit {
   yourPackage:string = "";
   common:string = "";
 
-  readonly listUser = "<li><b>Monthly:</b><br /><b>Total Users:</b> {0} with <b>Unlimited Flows Only</b>{1}{2}</li>";
+  readonly listUser = "<li><b>Total Users:</b> {0} with <b>Unlimited Flows Only</b>{1}{2}</li>";
   readonly commonDataService = "<br /><b>Common Data Service:</b><ul><li><b>Database:</b> {0} MB</li><li><b>Files:</b> {1} MB</li></ul>";
-  readonly listUserRPA = "<li><b>Monthly:</b><br /><b>Total Users:</b> {0} with Unlimited Flows<br /><b>Total Attended RPAs:</b> {1}<br /><b>Total AI Credits:</b> US${2} per User{3}{4}{5}</li>";
+  readonly listUserRPA = "<li><b>Total Users:</b> {0} with Unlimited Flows<br /><b>Total Attended RPAs:</b> {1}<br /><b>Total AI Credits:</b> US${2} per User{3}{4}{5}</li>";
   readonly aiUnits = "<b>Total AI Units:</b> US${0}";
   readonly bots = "<b>Total Unattended RPAs:</b> {0}";
 
