@@ -24,7 +24,7 @@ export class MsPowerAutomatePerFlowComponent implements OnInit {
 
   readonly listFlow = "<li><b>Total Flows:</b> {0} for <b>Unlimited Users</b>{1}{2}{3}{4}</li>";  
   readonly commonDataService = "<br /><b>Common Data Service per User:</b><ul><li><b>Database:</b> {0} MB</li><li><b>Files:</b> {1} MB</li></ul>";
-  readonly attendedRPAs = "<b>Total Users with Attended RPA Support:</b> {0}<br /><b>Total Attended RPAs:</b> {1}<br /><b>Total AI Credits:</b> US${2} per User with Attended RPA"
+  readonly attendedRPAs = "<b>Total Users with Attended RPA:</b> {0}<br /><b>Total Attended RPAs:</b> {1}<br /><b>Total AI Credits:</b> US${2} per User with Attended RPA"
   readonly aiUnits = "<b>Total AI Units:</b> US${0}";
   readonly bots = "<b>Total Unattended RPAs:</b> {0}";
 

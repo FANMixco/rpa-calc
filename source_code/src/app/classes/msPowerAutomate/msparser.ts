@@ -3,7 +3,12 @@ import { String } from 'typescript-string-operations';
 export class MSParser {
 
     totalUnlimited(total:number):string {
-        return total === -1 ? "Unlimited" : total.toString();
+        try {
+            return total === -1 ? "Unlimited" : total.toString();            
+        }
+        catch {
+            return "";
+        }
     }
 
     cleanPerUserPlan(plan:any, note:number):string {
