@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { LocalStorage } from 'src/app/classes/local-storage';
 import { NotesGenerator } from 'src/app/classes/notes-generator';
 import { environment } from 'src/environments/environment.prod';
@@ -15,7 +15,7 @@ export class UipathPaymentComponent implements OnInit {
 
   uiLocation: Array<Object>;
 
-  uiPathForm: FormGroup;
+  uiPathForm: UntypedFormGroup;
   storage:LocalStorage;
 
   onPremises: boolean = true;
@@ -23,7 +23,7 @@ export class UipathPaymentComponent implements OnInit {
   totalPerYear:number;
   notes:string = "";
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: UntypedFormBuilder) {
     this.storage = new LocalStorage();
     this.verifyData();
   }

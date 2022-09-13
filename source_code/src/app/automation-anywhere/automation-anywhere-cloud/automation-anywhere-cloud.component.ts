@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder } from '@angular/forms';
 import { LocalStorage } from 'src/app/classes/local-storage';
 import { NotesGenerator } from 'src/app/classes/notes-generator';
 import { environment } from 'src/environments/environment.prod';
@@ -11,7 +11,7 @@ import { environment } from 'src/environments/environment.prod';
 })
 export class AutomationAnywhereCloudComponent implements OnInit {
 
-  aaForm: FormGroup;
+  aaForm: UntypedFormGroup;
   totalPerMonth: number = 0;
   totalPerYear: number = 0;
   infoAA: any;
@@ -19,7 +19,7 @@ export class AutomationAnywhereCloudComponent implements OnInit {
   notes:string = "";
   storage:LocalStorage;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: UntypedFormBuilder) {
     this.storage = new LocalStorage();
     this.verifyData();
   }
