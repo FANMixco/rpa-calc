@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder } from '@angular/forms';
 import { LocalStorage } from 'src/app/classes/local-storage';
 import { NotesGenerator } from 'src/app/classes/notes-generator';
 import { environment } from 'src/environments/environment.prod';
@@ -14,7 +14,7 @@ import { String } from 'typescript-string-operations';
 export class MsPowerAutomatePerUsersComponent implements OnInit {
 
   storage:LocalStorage;
-  msPowerUsersForm: FormGroup;
+  msPowerUsersForm: UntypedFormGroup;
   totalNoRPA: number = 0;
   totalRPA: number = 0;
   totalPerMonth: number = 0;
@@ -54,7 +54,7 @@ export class MsPowerAutomatePerUsersComponent implements OnInit {
     }
   }
 
-  constructor(private formBuilder: FormBuilder) { 
+  constructor(private formBuilder: UntypedFormBuilder) { 
     this.storage = new LocalStorage();
     this.verifyData();
   }
