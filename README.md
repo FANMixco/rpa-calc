@@ -10,7 +10,7 @@ For all these reasons, I decided to create this Calculator that can give you som
 - Microsoft Power Automate (fully supported).
 - UiPath (partially, Cloud or AI Capabilities are missing).
 
-Feel free to fork it, and let's bring more transparency to the world! Plus, if you have some of the missing information, any updates or support, feel free to contact me at https://federiconavarrete.com
+Feel free to fork it, and let's bring more transparency to the world! Plus, if you have some of the missing information, any updates, or support, feel free to contact me at [federiconavarrete.com](https://federiconavarrete.com)
 
 [![preview][1]][1]
 
