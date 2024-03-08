@@ -10,7 +10,7 @@ For all these reasons, I decided to create this Calculator that can give you som
 - Microsoft Power Automate (fully supported).
 - UiPath (partially, Cloud or AI Capabilities are missing).
 
-Feel free to fork it, and let's bring more transparency to the world! Plus, if you have some of the missing information, any update or support, feel free to contact me at https://federiconavarrete.com
+Feel free to fork it, and let's bring more transparency to the world! Plus, if you have some of the missing information, any updates or support, feel free to contact me at https://federiconavarrete.com
 
 [![preview][1]][1]
 
@@ -21,4 +21,4 @@ Feel free to fork it, and let's bring more transparency to the world! Plus, if y
 
 |  LinkedIn  |YouTube|Amazon|Goodreads|Instagram|Cyber Prophets|Sharing Your Stories|
 |:----------|:------------:|:------------:|:------------:|:------------:|:------------:|:------------:|
-|[![LinkedIn](https://i.stack.imgur.com/idQWu.png)](https://bit.ly/3xLCmvb)|[![YouTube](https://i.stack.imgur.com/CFPMR.png)](https://youtube.com/c/FedericoNavarrete)|[![Amazon](https://i.stack.imgur.com/NFOeE.png)](https://www.amazon.com/Federico-Navarrete/e/B08NJTXQRV)|[![Goodreads](https://i.stack.imgur.com/oBk0g.jpg)](https://www.goodreads.com/author/show/21125413.Federico_Navarrete)|[![Instagram](https://i.stack.imgur.com/PIfqY.png)](https://www.instagram.com/federico_the_consultant)|[![RedCircle Podcast](https://i.stack.imgur.com/4XICF.png)](https://redcircle.com/shows/cyber-prophets)|[![RedCircle Podcast](https://i.stack.imgur.com/4XICF.png)](https://redcircle.com/shows/sharing-your-stories)|
+|[![LinkedIn](https://i.stack.imgur.com/idQWu.png)](https://bit.ly/lfanmixco)|[![YouTube](https://i.stack.imgur.com/CFPMR.png)](https://youtube.com/c/FedericoNavarrete)|[![Amazon](https://i.stack.imgur.com/NFOeE.png)](https://www.amazon.com/Federico-Navarrete/e/B08NJTXQRV)|[![Goodreads](https://i.stack.imgur.com/oBk0g.jpg)](https://www.goodreads.com/author/show/21125413.Federico_Navarrete)|[![Instagram](https://i.stack.imgur.com/PIfqY.png)](https://www.instagram.com/federico_the_consultant)|[![RedCircle Podcast](https://i.stack.imgur.com/4XICF.png)](https://redcircle.com/shows/cyber-prophets)|[![RedCircle Podcast](https://i.stack.imgur.com/4XICF.png)](https://redcircle.com/shows/sharing-your-stories)|
